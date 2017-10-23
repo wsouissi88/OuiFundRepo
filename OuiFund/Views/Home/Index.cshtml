@@ -1,0 +1,38 @@
+﻿@using OuiFund.Models
+@model HomeViewModel
+@{
+    ViewBag.Title = "Acceuil";
+}
+
+<div class="jumbotron">
+  <p>Mar7bé</p>
+@using (Html.BeginForm("Index", "Home", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(m => m.User.UserName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.User.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.User.UserName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add a User" class="btn btn-success" />
+        </div>
+    </div>
+}
+    <table>
+
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>
+                   - @Html.Label(user.UserName)
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>
+

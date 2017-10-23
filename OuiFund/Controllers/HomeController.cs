@@ -16,7 +16,7 @@ namespace OuiFund.Controllers
 
         public HomeController(IUserService userService)
         {
-            //test
+            
             _userSerice = userService;
         }
         public ActionResult Index()

@@ -49,9 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Adherent.cs" />
+    <Compile Include="Model\CategorieQuest.cs" />
+    <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\Dossier.cs" />
+    <Compile Include="Model\Question.cs" />
+    <Compile Include="Model\Reponse.cs" />
+    <Compile Include="Model\StartUp.cs" />
+    <Compile Include="Repositories\IAdherentRepository.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
+    <Compile Include="Repositories\ICategorieRepository.cs" />
+    <Compile Include="Repositories\IClientRepository.cs" />
+    <Compile Include="Repositories\IDocumentRepository.cs" />
+    <Compile Include="Repositories\IDossierRepository.cs" />
+    <Compile Include="Repositories\IQuestionRepository.cs" />
+    <Compile Include="Repositories\IReponseRepository.cs" />
+    <Compile Include="Repositories\IStartupRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

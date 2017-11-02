@@ -3,36 +3,33 @@
 @{
     ViewBag.Title = "Acceuil";
 }
-
 <div class="jumbotron">
-  <p>Mar7bé</p>
-@using (Html.BeginForm("Index", "Home", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        @Html.LabelFor(m => m.User.UserName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.User.UserName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.User.UserName, "", new { @class = "text-danger" })
+    <h2>Veuillez saisir votre adresse email pour commencer</h2>
+    <br />
+    @using (Html.BeginForm("Index", "Home", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(m => m.User.AdresseEmail, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.User.AdresseEmail, new { placeholder = "Votre email adresse", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.User.AdresseEmail, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Add a User" class="btn btn-success" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="text-align: right;">
+                <input type="submit" value="Lancer votre Projet" class="btn btn-success" style="background-color:forestgreen;height:65px" />
+            </div>
         </div>
-    </div>
-}
-    <table>
-
-        @foreach (var user in Model.Users)
-        {
-            <tr>
-                <td>
-                   - @Html.Label(user.UserName)
-                </td>
-            </tr>
-
-        }
-    </table>
+    }
+    @*<table>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @Html.Label(user.AdresseEmail)
+                    </td>
+                </tr>
+            }
+        </table>*@
 </div>
-

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OuiFund.Domain.Model.Reponse>
+
+@{
+    ViewBag.Title = "Reponses";
+}
+
+<h2>Reponses</h2>
+<script type="text/javascript">
+    $("#reponseId").addClass("active");
+</script>
+<p>
+    @Html.ActionLink(" Ajouter", "AddReponse", null, new { @class = "fa fa-plus" })
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.reponseQuestion.DescriptionQuest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TextReponse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValeurReponse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnalyseReponse)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.reponseQuestion.DescriptionQuest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextReponse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValeurReponse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnalyseReponse)
+            </td>
+            <td style="text-align: center;">
+                @Html.ActionLink(" ", "Edit", new { id = item.ReponseID }, new { @class = "fa fa-pencil" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.ReponseID }, new { @class = "fa fa-trash-o" })
+            </td>
+        </tr>
+    }
+
+</table>

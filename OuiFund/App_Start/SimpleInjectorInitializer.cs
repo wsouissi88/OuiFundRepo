@@ -9,9 +9,11 @@ namespace OuiFund.App_Start
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
     using Domain.Repositories;
-    using Services;
     using Data;
     using System.Data.Entity;
+    using OuiFund.Data.Repository;
+    using OuiFund.Services.IServices;
+    using OuiFund.Services.Services;
 
     public static class SimpleInjectorInitializer
     {
@@ -35,6 +37,16 @@ namespace OuiFund.App_Start
             container.Register<DbContext, OuiFundContext>(Lifestyle.Scoped);
             container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
             container.Register<IUserService, UserService>(Lifestyle.Scoped);
+
+            container.Register<IAdherentRepository, AdherentRepository>(Lifestyle.Scoped);
+            container.Register<IClientRepository, ClientRepository>(Lifestyle.Scoped);
+
+            container.Register<IQuestionRepository, QuestionRepository>(Lifestyle.Scoped);
+            container.Register<IQuestionService, QuestionService>(Lifestyle.Scoped);
+            container.Register<ICategorieRepository, CategorieRepository>(Lifestyle.Scoped);
+            container.Register<ICategorieService, CategorieService>(Lifestyle.Scoped);
+            container.Register<IReponseRepository, ReponseRepository>(Lifestyle.Scoped);
+            container.Register<IReponseService, ReponseService>(Lifestyle.Scoped);
 
         }
     }

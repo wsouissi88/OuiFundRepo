@@ -82,17 +82,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
-    <Compile Include="Migrations\201710231948062_OuiFundInit.cs" />
-    <Compile Include="Migrations\201710231948062_OuiFundInit.Designer.cs">
-      <DependentUpon>201710231948062_OuiFundInit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710232132445_requiredUserName.cs" />
-    <Compile Include="Migrations\201710232132445_requiredUserName.Designer.cs">
-      <DependentUpon>201710232132445_requiredUserName.cs</DependentUpon>
+    <Compile Include="Configuration\AdherentConfiguration.cs" />
+    <Compile Include="Configuration\CategorieConfiguration.cs" />
+    <Compile Include="Configuration\ClientConfiguration.cs" />
+    <Compile Include="Configuration\DocumentConfiguration.cs" />
+    <Compile Include="Configuration\DossierConfiguration.cs" />
+    <Compile Include="Configuration\QuestionConfiguration.cs" />
+    <Compile Include="Configuration\ReponseConfiguration.cs" />
+    <Compile Include="Configuration\StartupConfiguration.cs" />
+    <Compile Include="Configuration\UserConfiguration.cs" />
+    <Compile Include="Migrations\201711021223300_initial.cs" />
+    <Compile Include="Migrations\201711021223300_initial.Designer.cs">
+      <DependentUpon>201711021223300_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OuiFundContext.cs" />
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="Repository\AdherentRepository.cs" />
+    <Compile Include="Repository\CategorieRepository.cs" />
+    <Compile Include="Repository\ClientRepository.cs" />
+    <Compile Include="Repository\DocumentRepository.cs" />
+    <Compile Include="Repository\DossierRepository.cs" />
+    <Compile Include="Repository\QuestionRepository.cs" />
+    <Compile Include="Repository\ReponseRepository.cs" />
+    <Compile Include="Repository\StartupRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,11 +119,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710231948062_OuiFundInit.resx">
-      <DependentUpon>201710231948062_OuiFundInit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710232132445_requiredUserName.resx">
-      <DependentUpon>201710232132445_requiredUserName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711021223300_initial.resx">
+      <DependentUpon>201711021223300_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

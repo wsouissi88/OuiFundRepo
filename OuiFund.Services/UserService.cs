@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OuiFund.Domain;
 using OuiFund.Domain.Repositories;
+using OuiFund.Domain.Model;
 
 namespace OuiFund.Services
 {

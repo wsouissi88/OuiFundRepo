@@ -7,13 +7,13 @@ namespace OuiFund.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class requiredUserName : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(requiredUserName));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710232132445_requiredUserName"; }
+            get { return "201711021223300_initial"; }
         }
         
         string IMigrationMetadata.Source

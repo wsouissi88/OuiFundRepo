@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OuiFund.Domain.Repositories;
-using OuiFund.Domain;
+using OuiFund.Domain.Model;
 using System.Data.Entity;
 
 namespace OuiFund.Data

@@ -1,4 +1,5 @@
 ﻿using OuiFund.Domain;
+using OuiFund.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

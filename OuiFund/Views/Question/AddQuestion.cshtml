@@ -1,0 +1,77 @@
+﻿@model OuiFund.Domain.Model.Question
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Ajouter Question</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescriptionQuest, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DescriptionQuest, new { htmlAttributes = new { @class = "form-control", @style = "width: 450px;" } })
+                @Html.ValidationMessageFor(model => model.DescriptionQuest, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReferenceQuest, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ReferenceQuest, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ReferenceQuest, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StatusQuest, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.StatusQuest)
+                    @Html.ValidationMessageFor(model => model.StatusQuest, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.categorieId, "Catégorie", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.categorieId, (SelectList)ViewBag.Categs, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.categorieId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TypeQuest, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.TypeQuest, "", htmlAttributes: new { id = "typeQuestId", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TypeQuest, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <form>
+            <div id="qcm" style="display:none">
+                <p>form to add qcm</p>
+            </div>
+            <div id="noted" style="display:none">
+                <p>form to add noted question</p>
+            </div>
+            <div id="redact" style="display:none">
+                <p>form to add redaction question</p>
+            </div>
+        </form>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ajouter" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/Scripts/Views/QuestionAdd.js")

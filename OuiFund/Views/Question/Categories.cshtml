@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OuiFund.Domain.Model.CategorieQuest>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>Catégories</h2>
+<script type="text/javascript">
+    $("#categorieId").addClass("active");
+</script>
+<p>
+    @Html.ActionLink(" Ajouter", "AddCategorie", null, new { @class = "fa fa-plus" })
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomCategorie)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomCategorie)
+            </td>
+            <td style="text-align: center;">
+                @Html.ActionLink(" ", "Edit", new { id = item.CategorieID }, new { @class = "fa fa-pencil" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.CategorieID }, new { @class = "fa fa-trash-o" })
+            </td>
+        </tr>
+    }
+
+</table>

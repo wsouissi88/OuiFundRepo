@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OuiFund.Domain.Model.Question>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Questions</h2>
+<script type="text/javascript">
+    $("#questionId").addClass("active");
+</script>
+<p>
+    @Html.ActionLink(" Ajouter", "AddQuestion", null, new { @class = "fa fa-plus" })
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.categorieQuestion.NomCategorie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionQuest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReferenceQuest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusQuest)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.categorieQuestion.NomCategorie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescriptionQuest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReferenceQuest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusQuest)
+            </td>
+            <td style="text-align: center;">
+                @Html.ActionLink(" ", "Edit", new { id = item.QuestionID }, new { @class = "fa fa-pencil" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.QuestionID }, new { @class = "fa fa-trash-o" })
+            </td>
+        </tr>
+    }
+
+</table>

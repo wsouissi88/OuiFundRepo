@@ -1,0 +1,29 @@
+﻿@model OuiFund.Domain.Model.Question
+
+@{
+    ViewBag.Title = "Questionnaire";
+}
+
+<h2>Questionnaire</h2>
+<div id="start" style="text-align:center;">
+    <p>On vous propose ce QUIZ d'évaluation de votre projet</p>
+    <p>Veuillez répondre proprement à toutes les questions </p><br />
+    <button id="startId" class="btn btn-primary"> Commencez !</button>
+</div>
+<br />
+<div id="questionnaireId" class="fa-border" style="text-align:center;padding:20px;font-size:24px;border-radius:10px">
+    <div id="question">
+        <div style="border:1px solid #000000;border-radius:15px" id="titre">
+
+        </div>
+        <div id="reponse">
+
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <ul id="questId"></ul>
+</div>
+@Scripts.Render("~/Scripts/Views/Questionnaire.js")
+

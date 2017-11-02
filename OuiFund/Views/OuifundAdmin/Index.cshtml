@@ -1,0 +1,264 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>OuiFund Dashboard</title>
+    <link rel="icon" href="../../Content/OuifundContent/images/Logo.PNG">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../../Content/OuifundContent/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../Content/OuifundContent/lib/font-awesome/css/font-awesome.css">
+
+    <script src="../../Content/OuifundContent/lib/jquery-1.11.1.min.js" type="text/javascript"></script>
+
+    <script src="../../Content/OuifundContent/lib/jQuery-Knob/js/jquery.knob.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".knob").knob();
+        });
+    </script>
+
+
+    <link rel="stylesheet" type="text/css" href="../../Content/OuifundContent/stylesheets/theme.css">
+    <link rel="stylesheet" type="text/css" href="../../Content/OuifundContent/stylesheets/premium.css">
+</head>
+<body class=" theme-blue">
+
+    <!-- Demo page code -->
+
+    <script type="text/javascript">
+        $(function() {
+            var match = document.cookie.match(new RegExp('color=([^;]+)'));
+            if(match) var color = match[1];
+            if(color) {
+                $('body').removeClass(function (index, css) {
+                    return (css.match (/\btheme-\S+/g) || []).join(' ')
+                })
+                $('body').addClass('theme-' + color);
+            }
+
+            $('[data-popover="true"]').popover({html: true});
+
+        });
+    </script>
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+            color: #fff;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        $(function() {
+            var uls = $('.sidebar-nav > ul > *').clone();
+            uls.addClass('visible-xs');
+            $('#main-menu').append(uls.clone());
+        });
+    </script>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="" href="index.html"><img src="../../Content/OuifundContent/images/Logo.PNG"></a>
+        </div>
+
+        <div class="navbar-collapse collapse" style="height: 1px;">
+            <ul id="main-menu" class="nav navbar-nav navbar-right">
+                <li class="dropdown hidden-xs">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> Jihed Baâtout
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="">Profil</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="Login.cshtml">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="sidebar-nav">
+        <ul>
+            <li>
+                <a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse">
+                    <i class="fa fa-fw fa-dashboard"></i> Dashboard<i class="fa fa-collapse"></i>
+                </a>
+            </li>
+            <li>
+                <ul class="dashboard-menu nav nav-list collapse in">
+                    <li class="disabled">
+                        <a href="menu.html"><span class="fa fa-home"></span> Menu</a>
+                    </li>
+                    <li class="disabled">
+                        <a href="analyste.html"><span class="fa fa-users"></span> Analystes</a>
+                    </li>
+                    <li id="utilisateurId">
+                        @Html.ActionLink(" Utilisateurs", "Users", "Home", null, new { @class = "fa fa-users" })
+                    </li>
+                    <li class="disabled">
+                        <a href="adherent.html"><span class="fa fa-users"></span> Adhérents</a>
+                    </li>
+                    <li class="disabled">
+                        <a href="client.html"><span class="fa fa-users"></span> Clients</a>
+                    </li>
+                    <li class="disabled">
+                        <a href="investisseur.html"><span class="fa fa-users"></span> Investisseurs</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-target=".organisation-menu" class="nav-header" data-toggle="collapse">
+                    <i class="fa fa-fw fa-sitemap"></i> Organisation<i class="fa fa-collapse"></i>
+                </a>
+            </li>
+            <li>
+                <ul class="organisation-menu nav nav-list collapse in">
+                    <li class="disabled">
+                        <a href="index.html"><span class="fa fa-book"></span> Dossier</a>
+                    </li>
+                    <li class="disabled">
+                        <a href="index.html"><span class="fa fa-calendar-o"></span> Programmes</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" data-target=".configuration-menu" class="nav-header" data-toggle="collapse">
+                    <i class="fa fa-fw fa-gear"></i> Configuration<i class="fa fa-collapse"></i>
+                </a>
+            </li>
+            <li>
+                <ul class="configuration-menu nav nav-list collapse in">
+                    <li id="categorieId">
+                        @Html.ActionLink(" Catégories", "Categories", "Question", null, new { @class = "fa fa-tag" })
+                    </li>
+                    <li id="questionId">
+                        @Html.ActionLink(" Questions", "Questions", "Question", null, new { @class = "fa fa-question" })
+                    </li>
+                    <li id="reponseId">
+                        @Html.ActionLink(" Reponses", "Reponses", "Question", new { questID = 0 }, new { @class = "fa fa-thumbs-o-up" })
+                    </li>
+                    <li class="disabled">
+                        <a href="index.html"><span class="fa fa-cogs"></span> Paramétrage</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <div class="stats">
+                <p class="stat"><span class="label label-info">@ViewBag.client</span> Validées</p>
+                <p class="stat"><span class="label label-success">@ViewBag.active</span> En cours</p>
+                <p class="stat"><span class="label label-danger">@ViewBag.client</span> Bloquées</p>
+            </div>
+
+            <h1 class="page-title">Dashboard</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a> </li>
+                <li class="active">Dashboard</li>
+            </ul>
+
+        </div>
+        <div class="main-content">
+            @RenderBody()
+            <div class="panel panel-default">
+                <a href="#page-stats" class="panel-heading" data-toggle="collapse">Statistiques</a>
+                <div id="page-stats" class="panel-collapse panel-body collapse in">
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="knob-container">
+                                <input class="knob" data-width="200" data-min="0" data-max="100" data-displayPrevious="true" value=@ViewBag.account data-fgColor="#92A3C2" data-readOnly=true;>
+                                <h3 class="text-muted text-center">Comptes</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="knob-container">
+                                <input class="knob" data-width="200" data-min="0" data-max="100" data-displayPrevious="true" value=@ViewBag.adherent data-fgColor="#92A3C2" data-readOnly=true;>
+                                <h3 class="text-muted text-center">Inscrits</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="knob-container">
+                                <input class="knob" data-width="200" data-min="0" data-max="100" data-displayPrevious="true" value=@ViewBag.client data-fgColor="#92A3C2" data-readOnly=true;>
+                                <h3 class="text-muted text-center">Dossiers en cours</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="knob-container">
+                                <input class="knob" data-width="200" data-min="0" data-max="1000" data-displayPrevious="true" value="320" data-fgColor="#92A3C2" data-readOnly=true;>
+                                <h3 class="text-muted text-center">Dossiers Validées</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-default">
+                        <a href="#widget1container" class="panel-heading" data-toggle="collapse">Notre Vitrine </a>
+                        <div id="widget1container" class="panel-body collapse in">
+                            <h2>Description</h2>
+                            <p> <a href="#" target="_blank">StartUpNess</a> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-default">
+                        <a href="#widget2container" class="panel-heading" data-toggle="collapse">OuiFund </a>
+                        <div id="widget2container" class="panel-body collapse in">
+
+                            <p><a class="btn btn-primary">Analyser</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <hr>
+                <p class="pull-right"> <a href="#" target="_blank">OuiFund </a> OuiFund Dashboard</p>
+                <p>Copyright © | 2017 <a href="#" target="_blank">StartUpNess</a></p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="../../Content/OuifundContent/lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $("[rel=tooltip]").tooltip();
+        $(function() {
+            $('.demo-cancel-click').click(function(){return false;});
+        });
+    </script>
+</body>
+</html>

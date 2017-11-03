@@ -1,4 +1,6 @@
-﻿using OuiFund.Domain.Model;
+﻿using OuiFund.Data;
+using OuiFund.Domain.Model;
+using OuiFund.Models;
 using OuiFund.Services.IServices;
 using System;
 using System.Collections.Generic;
@@ -34,13 +36,13 @@ namespace OuiFund.Controllers
         }
         public ActionResult Questions()
         {   // All Questions
-            //var questions = questionService.getListQuestions();
+            var questions = questionService.getListQuestions();
 
             // Libre Question
             //var questions = questionService.getQuestionsByType(TypeQuestion.Libre_Question);
 
             // Random 2 Questions QCM
-            var questions = questionService.RandomQuestions(TypeQuestion.QCM_Question, 2);
+            //var questions = questionService.RandomQuestions(TypeQuestion.QCM_Question, 2);
             return View(questions);
         }
 
@@ -101,7 +103,16 @@ namespace OuiFund.Controllers
             if (ModelState.IsValid)
             {
                 categorieService.ajouterCategorie(categorie);
+                categorie = null;
             }
+            return View();
+        }
+        
+        public ActionResult DeleteCategorie(int id)
+        {
+            CategorieQuest c = categorieService.getCategorieById(id);
+            categorieService.supprimerCategorie(c);
+
             return View();
         }
 
@@ -123,6 +134,46 @@ namespace OuiFund.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public ActionResult CreateQuestion()
+        {
+            var listCat = categorieService.getCategories();
+            ViewBag.Categs = new SelectList(listCat, "CategorieID", "NomCategorie");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateQuestion(QuestionViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Question q = new Question()
+                {
+                    DescriptionQuest = model.question.DescriptionQuest,
+                    ReferenceQuest = model.question.ReferenceQuest,
+                    StatusQuest = model.question.StatusQuest,
+                    TypeQuest = model.question.TypeQuest,
+                    categorieId = model.question.categorieId
+                };
+                q.Reponses.Add(model.reponse);
+                questionService.ajouterQuestion(q);
+                //Reponse r = new Reponse()
+                //{
+                //    TextReponse = model.reponse.TextReponse,
+                //    ValeurReponse = model.reponse.ValeurReponse,
+                //    AnalyseReponse = model.reponse.AnalyseReponse,
+                //    questionId = q.QuestionID
+                //};
+                //reponseService.ajouterReponse(r);
+            }
+            return View();
+        }
+
+        public ActionResult DeleteQuestion(int id)
+        {
+            questionService.supprimerQuestion(id);
+            return View();
+        }
 
         [HttpGet]
         public ActionResult AddReponse()
@@ -140,6 +191,11 @@ namespace OuiFund.Controllers
             {
                 reponseService.ajouterReponse(reponse);
             }
+            return View();
+        }
+        public ActionResult DeleteReponse(int id)
+        {
+            reponseService.supprimerReponse(id);
             return View();
         }
     }

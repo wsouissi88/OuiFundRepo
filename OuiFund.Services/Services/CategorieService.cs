@@ -24,6 +24,11 @@ namespace OuiFund.Services.Services
             return categs;
         }
 
+        public CategorieQuest getCategorieById(int idcateg)
+        {
+            return categRepository.GetById(idcateg);
+        }
+
         public bool ajouterCategorie(CategorieQuest categorie)
         {
             if (categorie != null)
@@ -32,6 +37,11 @@ namespace OuiFund.Services.Services
                 return true;
             }
             else { return false; }
+        }
+
+        public void supprimerCategorie(CategorieQuest categ)
+        {
+            categRepository.Delete(categ);
         }
     }
 }

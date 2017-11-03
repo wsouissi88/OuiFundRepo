@@ -10,7 +10,8 @@ namespace OuiFund.Services.IServices
     public interface ICategorieService
     {
         List<CategorieQuest> getCategories();
-
+        CategorieQuest getCategorieById(int idcateg);
         bool ajouterCategorie(CategorieQuest categorie);
+        void supprimerCategorie(CategorieQuest categ);
     }
 }

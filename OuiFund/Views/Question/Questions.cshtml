@@ -9,7 +9,7 @@
     $("#questionId").addClass("active");
 </script>
 <p>
-    @Html.ActionLink(" Ajouter", "AddQuestion", null, new { @class = "fa fa-plus" })
+    @Html.ActionLink(" Ajouter", "CreateQuestion", null, new { @class = "fa fa-plus" })
 </p>
 <table class="table table-bordered table-hover">
     <tr>
@@ -45,7 +45,7 @@
             </td>
             <td style="text-align: center;">
                 @Html.ActionLink(" ", "Edit", new { id = item.QuestionID }, new { @class = "fa fa-pencil" }) |
-                @Html.ActionLink(" ", "Delete", new { id = item.QuestionID }, new { @class = "fa fa-trash-o" })
+                @Html.ActionLink(" ", "DeleteQuestion", new { id = item.QuestionID }, new { @class = "fa fa-trash-o" })
             </td>
         </tr>
     }

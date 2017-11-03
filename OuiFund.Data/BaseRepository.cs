@@ -35,7 +35,7 @@ namespace OuiFund.Data
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().Find(id);
         }
 
         public void Update(T entity)

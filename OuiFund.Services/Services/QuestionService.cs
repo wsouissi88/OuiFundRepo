@@ -26,6 +26,11 @@ namespace OuiFund.Services.Services
             else { return false; }
         }
 
+        public Question getQuestionById(int idquest)
+        {
+            return questRepository.GetById(idquest);
+        }
+
         public List<Question> getListQuestions()
         {
             return questRepository.GetAll().ToList();

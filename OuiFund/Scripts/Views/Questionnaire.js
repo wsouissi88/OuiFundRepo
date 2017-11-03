@@ -1,9 +1,4 @@
-﻿
-//$("#startId").click(function () {
-//    alert("Value: ");
-//});
-
-$("#startId").click(function (e) {
+﻿$("#startId").click(function (e) {
     console.log('dd');
     e.preventDefault();
     $("#start").css('display', 'none');

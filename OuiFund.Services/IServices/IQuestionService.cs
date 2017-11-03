@@ -10,6 +10,7 @@ namespace OuiFund.Services.IServices
     public interface IQuestionService
     {
         bool ajouterQuestion(Question question);
+        Question getQuestionById(int idquest);
         List<Question> getListQuestions();
         List<Question> getQuestionsByType(TypeQuestion type);
         List<Question> RandomQuestions(TypeQuestion type, int count);

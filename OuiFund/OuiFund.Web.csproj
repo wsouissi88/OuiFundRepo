@@ -222,6 +222,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\QuestionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -523,6 +524,10 @@
     <Content Include="Views\Question\Questionnaire.cshtml" />
     <Content Include="Views\Question\Questions.cshtml" />
     <Content Include="Views\Question\Reponses.cshtml" />
+    <Content Include="Views\Question\CreateQuestion.cshtml" />
+    <Content Include="Views\Question\DeleteCategorie.cshtml" />
+    <Content Include="Views\Question\DeleteQuestion.cshtml" />
+    <Content Include="Views\Question\DeleteReponse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,8 +15,8 @@ namespace OuiFund.Domain.Model
         public int UtilisateurID { get; set; }
 
         [Display(Name = "Votre Email")]
-        [DataType(DataType.EmailAddress)]
-        //[RegularExpression(@"\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b")]
+        //[DataType(DataType.EmailAddress)]
+        [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")]
         [Required(ErrorMessage = "Adresse email obligatoire")]
         public string AdresseEmail { get; set; }
 

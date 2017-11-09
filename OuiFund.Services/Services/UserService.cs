@@ -7,6 +7,7 @@ using OuiFund.Domain;
 using OuiFund.Domain.Repositories;
 using OuiFund.Domain.Model;
 using OuiFund.Services.IServices;
+using OuiFund.Data;
 
 namespace OuiFund.Services.Services
 {
@@ -16,7 +17,7 @@ namespace OuiFund.Services.Services
         private IAdherentRepository _adherentRepository { get; set; }
         private IClientRepository _clientRepository { get; set; }
 
-        public UserService(IUserRepository userRepository, IAdherentRepository adherentRepository, IClientRepository clientRepository)
+        public UserService(IUserRepository userRepository, IAdherentRepository adherentRepository,IClientRepository clientRepository)
         {
             _userRepository = userRepository;
             _adherentRepository = adherentRepository;
@@ -26,6 +27,11 @@ namespace OuiFund.Services.Services
         {
             return _userRepository.GetById(iduser);
         }
+
+        //public User getUserByEmail(string email)
+        //{
+            
+        //}
         public void Create(User user)
         {
             _userRepository.Create(user);

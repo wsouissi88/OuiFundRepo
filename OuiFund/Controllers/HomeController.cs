@@ -1,4 +1,5 @@
 ﻿using OuiFund.Domain;
+using OuiFund.Domain.Model;
 using OuiFund.Models;
 using OuiFund.Services.IServices;
 using System;
@@ -13,10 +14,17 @@ namespace OuiFund.Controllers
     public class HomeController : Controller
     {
         private IUserService _userService { get; set; }
+        private IAdherentService _adhService { get; set; }
+        private IDossierService _dossService { get; set; }
+        private IStartupService _strService { get; set; }
 
-        public HomeController(IUserService userService)
+        public HomeController(IUserService userService, IAdherentService adService, IStartupService stService,
+                                IDossierService dService)
         {
             _userService = userService;
+            _adhService = adService;
+            _strService = stService;
+            _dossService = dService;
 
             ViewBag.account = _userService.countUsers();
             ViewBag.adherent = _userService.countAdherents();
@@ -67,6 +75,37 @@ namespace OuiFund.Controllers
 
             _userService.supprimerUser(user);
             return RedirectToAction("Users");
+        }
+
+        public ActionResult RegisterAdherent()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegisterAdherent(Adherent adherent)
+        {
+            if (ModelState.IsValid)
+            {
+                adherent.dossierAdherent = new Dossier()
+                {
+                    StatusDossier = "Dossier en lancement",
+                    ReferenceDossier = "AdherentStartUp",
+                    startupDossier = new StartUp()
+                    {
+                        NomStartup = "OuiCloud",
+                        CreationStartup = DateTime.Now
+                    }
+                };
+
+                // get user by email 
+                adherent.UtilisateurID = 1;
+                //_strService.ajouterStartup(s);
+                //_dossService.ajouterDossier(d);                
+                adherent.ActiveUser = true;
+                _adhService.registerAdherent(adherent);
+            }
+            return View();
         }
     }
 }

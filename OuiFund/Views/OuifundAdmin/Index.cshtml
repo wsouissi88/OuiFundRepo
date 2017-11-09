@@ -122,8 +122,9 @@
                     <li id="utilisateurId">
                         @Html.ActionLink(" Utilisateurs", "Users", "Home", null, new { @class = "fa fa-users" })
                     </li>
-                    <li class="disabled">
-                        <a href="adherent.html"><span class="fa fa-users"></span> Adhérents</a>
+                    <li>
+                        @Html.ActionLink(" Adhérents", "RegisterAdherent", "Home", null, new { @class = "fa fa-users" })
+                        @*<a href="adherent.html"><span class="fa fa-users"></span> Adhérents</a>*@
                     </li>
                     <li class="disabled">
                         <a href="client.html"><span class="fa fa-users"></span> Clients</a>

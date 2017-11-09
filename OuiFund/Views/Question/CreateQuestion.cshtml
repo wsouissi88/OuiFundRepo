@@ -42,14 +42,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.question.categorieId, "Catégorie", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.question.categorieId, (SelectList)ViewBag.Categs, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.question.categorieId, ViewBag.Categs as SelectList, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question.categorieId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.question.TypeQuest, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.question.TypeQuest, "", htmlAttributes: new { id = "typeQuestId", @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.question.TypeQuest, "Sélectionné un Type de Question", htmlAttributes: new { id = "typeQuestId", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.question.TypeQuest, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,6 +59,17 @@
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
+                        @Html.LabelFor(model => model.reponse, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">                            
+                            @Html.TextAreaFor(model => model.reponse, new { @rows=6, @cols=120} )
+                            <p style="color:red;font-size:14px">
+                                NB: Ajouter vos réponses séparés par <strong>","</strong> avec une analyse spécifique;
+                                Exemple réponse1<strong>:</strong>analyse1<strong>,</strong>réponse2<strong>:</strong>analyse2
+                            </p>
+                            @Html.ValidationMessageFor(model => model.reponse, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
                         @Html.LabelFor(model => model.reponse.TextReponse, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.reponse.TextReponse, new { htmlAttributes = new { @class = "form-control col-md-4" } })
@@ -80,14 +91,14 @@
                             @Html.EditorFor(model => model.reponse.AnalyseReponse, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.reponse.AnalyseReponse, "", new { @class = "text-danger" })
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div id="noted" style="display:none">
-                <p>form to add noted question</p>
+                <p>question notée </p>
             </div>
             <div id="redact" style="display:none">
-                <p>form to add redaction question</p>
+                <p>question de redaction </p>
             </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

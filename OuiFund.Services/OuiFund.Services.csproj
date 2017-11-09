@@ -40,13 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IServices\IAdherentService.cs" />
     <Compile Include="IServices\ICategorieService.cs" />
+    <Compile Include="IServices\IDossierService.cs" />
     <Compile Include="IServices\IQuestionService.cs" />
     <Compile Include="IServices\IReponseService.cs" />
+    <Compile Include="IServices\IStartupService.cs" />
     <Compile Include="IServices\IUserService.cs" />
+    <Compile Include="Services\AdherentService.cs" />
     <Compile Include="Services\CategorieService.cs" />
+    <Compile Include="Services\DossierService.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="Services\ReponseService.cs" />
+    <Compile Include="Services\StartupService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

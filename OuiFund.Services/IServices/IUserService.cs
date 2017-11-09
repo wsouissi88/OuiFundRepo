@@ -11,6 +11,7 @@ namespace OuiFund.Services.IServices
     public interface IUserService
     {
         User getUserById(int iduser);
+        //User getUserByEmail(string email);
         void Create(User user);
         List<User> GetAll();
         int countUsers();

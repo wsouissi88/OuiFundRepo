@@ -48,16 +48,20 @@ namespace OuiFund.Controllers
 
         public JsonResult Questionnaires()
         {
-            List<int> questsId = new List<int>();
             List<string> quests = new List<string>();
-            List<Question> questions = questionService.RandomQuestions(TypeQuestion.QCM_Question, 3);
+            List<Reponse> rep = new List<Reponse>();
+            List<Question> questions = questionService.RandomQuestions(TypeQuestion.QCM_Question, 5);
             foreach (Question q in questions)
             {
-                questsId.Add(q.QuestionID);
-                quests.Add(q.DescriptionQuest);
+                rep = reponseService.getReponsesQuestion(q.QuestionID);
+                string reponses = "";
+                foreach(Reponse r in rep)
+                {
+                    reponses += ":" + r.TextReponse;
+                }
+                quests.Add(q.QuestionID+":"+q.DescriptionQuest+""+reponses);
             }
-
-            return Json(questsId, JsonRequestBehavior.AllowGet);
+            return Json(quests, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Reponse(int questId)
         {
@@ -155,7 +159,18 @@ namespace OuiFund.Controllers
                     TypeQuest = model.question.TypeQuest,
                     categorieId = model.question.categorieId
                 };
-                q.Reponses.Add(model.reponse);
+                List<string> listReponses = model.reponse.Split(',').ToList<string>();
+                for(int i=0; i < listReponses.Count; i++)
+                {
+                    List<string> reponseAnalyses = listReponses[i].Split(':').ToList<string>();
+                    Reponse r = new Reponse
+                    {
+                        TextReponse = reponseAnalyses[0],
+                        AnalyseReponse = reponseAnalyses[1],
+                        ValeurReponse = i
+                    };
+                    q.Reponses.Add(r);
+                }                
                 questionService.ajouterQuestion(q);
                 //Reponse r = new Reponse()
                 //{

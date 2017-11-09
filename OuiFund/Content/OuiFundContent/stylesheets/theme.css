@@ -528,16 +528,16 @@ a.panel-heading:hover,
   background-color: #553333;
   *background-color: #553333;
 }
-.btn-success {
+/*.btn-success {
   background-color: #556665;
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#617473), to(#556665));
   border: 1px solid #495857;
   font-weight: normal;
-}
-.btn-success:hover {
+}*/
+/*.btn-success:hover {
   background-color: #556665;
   *background-color: #556665;
-}
+}*/
 .btn-warning {
   background-color: #aaaa55;
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#b3b366), to(#aaaa55));
@@ -589,7 +589,7 @@ a.panel-heading:hover,
   margin: 0px auto;
   margin-top: 5em;
   float: none;
-  max-width: 400px;
+  max-width: 600px;
 }
 .dialog input[type="checkbox"] {
   margin: 0px;

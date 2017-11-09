@@ -2,27 +2,21 @@
     console.log('dd');
     e.preventDefault();
     $("#start").css('display', 'none');
+    $("#valid").css('display', 'inherit');
     $.ajax({
         type: "GET",
         url: "/Question/Questionnaires",
         data: {},
         contentType: 'json',
-        success: function (result) {
-            $(result).each(function (index, item) {
+        success: function (result) { 
+            for (var j = 0; j < result.length; j++) {
+                var x = result[j].split(":");
+                $("#questionnaireId").append("<div id=question" + j + "><h2> Question " + j + ": " + x[1] + "</h2><select class='input-lg btn-success' name=selectReponse" + j + "> </select> </div><br/>");
 
-                $("#titre").append("<h1>" + item + "</h1><br/>");
-                $.ajax({
-                    type: "GET",
-                    url: "/Question/Reponse/",
-                    data: { questId: item },
-                    success: function (result) {
-                        $(result).each(function (index, val) {
-
-                            $("#reponse").append("<input type='radio'> " + val + " </input><br/>");
-                        });
-                    }
-                });
-            });
-        }
+                for (var i = 2; i < x.length; i++) { 
+                    $('select[name="selectReponse'+j+'"]').append("<option value='question"+j + i+"'>" + x[i] + "</option>");
+                }       
+            }
+         }
     });
 });

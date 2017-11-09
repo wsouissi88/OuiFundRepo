@@ -11,19 +11,13 @@
     <button id="startId" class="btn btn-primary"> Commencez !</button>
 </div>
 <br />
-<div id="questionnaireId" class="fa-border" style="text-align:center;padding:20px;font-size:24px;border-radius:10px">
-    <div id="question">
-        <div id="titre">
-
-        </div>
-        <div id="reponse">
-
-        </div>
-    </div>
-    <div>
-
-    </div>
-    <ul id="questId"></ul>
+<div style="text-align:center;padding:20px;font-size:16px;border-radius:10px;margin-bottom:5px">
+    <div id="questionnaireId" class="fa-border" >
+    </div><br />
+    <div class="col-md-offset-10 col-md-2">
+        <input type="submit" value="Valider" style="display:none" id="valid" class="btn btn-primary" />
+    </div><br />
 </div>
+
 @Scripts.Render("~/Scripts/Views/Questionnaire.js")
 

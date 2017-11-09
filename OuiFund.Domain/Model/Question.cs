@@ -26,7 +26,7 @@ namespace OuiFund.Domain.Model
         [Display(Name = "Référence")]
         public string ReferenceQuest { get; set; }
 
-        [Display(Name = "Type")]
+        [Display(Name = "Type de question")]
         public TypeQuestion TypeQuest { get; set; }
 
         [Display(Name = "Status")]
@@ -41,10 +41,10 @@ namespace OuiFund.Domain.Model
     public enum TypeQuestion
     {
         [Display(Name = "Question Choix Multiple")]
-        QCM_Question,
+        QCM_Question=1,
         [Display(Name = "Question Evaluation")]
-        Noted_Question,
+        Noted_Question=2,
         [Display(Name = "Rédaction")]
-        Libre_Question
+        Libre_Question=3
     }
 }

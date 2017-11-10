@@ -46,6 +46,21 @@ namespace OuiFund.Controllers
             return View(questions);
         }
 
+        public ActionResult ChangeStatus(int QuestionId)
+        {
+            var quest = questionService.getQuestionById(QuestionId);
+            if(quest.StatusQuest == true)
+            {
+                quest.StatusQuest = false;
+            }
+            else
+            {
+                quest.StatusQuest = true;
+            }
+            questionService.modifierQuestion(quest);
+            return RedirectToAction("Questions");
+        }
+
         public JsonResult Questionnaires()
         {
             List<string> quests = new List<string>();
@@ -79,18 +94,18 @@ namespace OuiFund.Controllers
             return View();
         }
 
-        public ActionResult Reponses(int questID)
+        public ActionResult Reponses()
         {
             var reponses = new List<Reponse>();
 
-            if (questID != 0)
-            {
-                reponses = reponseService.getReponsesQuestion(questID);
-            }
-            else
-            {
+            //if (questID != 0)
+            //{
+            //    reponses = reponseService.getReponsesQuestion(questID);
+            //}
+            //else
+            //{
                 reponses = reponseService.getListReponses();
-            }
+            //}
             return View(reponses);
         }
 
@@ -116,8 +131,7 @@ namespace OuiFund.Controllers
         {
             CategorieQuest c = categorieService.getCategorieById(id);
             categorieService.supprimerCategorie(c);
-
-            return View();
+            return RedirectToAction("Categories");
         }
 
         [HttpGet]
@@ -151,13 +165,15 @@ namespace OuiFund.Controllers
         {
             if (ModelState.IsValid)
             {
+                CategorieQuest cat = categorieService.getCategorieById(model.CategorieID);                
                 Question q = new Question()
                 {
-                    DescriptionQuest = model.question.DescriptionQuest,
-                    ReferenceQuest = model.question.ReferenceQuest,
-                    StatusQuest = model.question.StatusQuest,
-                    TypeQuest = model.question.TypeQuest,
-                    categorieId = model.question.categorieId
+                    DescriptionQuest = model.DescriptionQuest,
+                    ReferenceQuest = model.ReferenceQuest,
+                    StatusQuest = model.StatusQuest,
+                    TypeQuest = model.TypeQuest,
+                    categorieId = model.CategorieID,
+                    categorieQuestion = cat
                 };
                 List<string> listReponses = model.reponse.Split(',').ToList<string>();
                 for(int i=0; i < listReponses.Count; i++)
@@ -172,14 +188,6 @@ namespace OuiFund.Controllers
                     q.Reponses.Add(r);
                 }                
                 questionService.ajouterQuestion(q);
-                //Reponse r = new Reponse()
-                //{
-                //    TextReponse = model.reponse.TextReponse,
-                //    ValeurReponse = model.reponse.ValeurReponse,
-                //    AnalyseReponse = model.reponse.AnalyseReponse,
-                //    questionId = q.QuestionID
-                //};
-                //reponseService.ajouterReponse(r);
             }
             return View();
         }
@@ -187,7 +195,7 @@ namespace OuiFund.Controllers
         public ActionResult DeleteQuestion(int id)
         {
             questionService.supprimerQuestion(id);
-            return View();
+            return RedirectToAction("Questions");
         }
 
         [HttpGet]
@@ -211,7 +219,7 @@ namespace OuiFund.Controllers
         public ActionResult DeleteReponse(int id)
         {
             reponseService.supprimerReponse(id);
-            return View();
+            return RedirectToAction("Reponses");
         }
     }
 }

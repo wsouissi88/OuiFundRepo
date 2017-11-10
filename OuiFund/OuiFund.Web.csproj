@@ -539,6 +539,7 @@
     <Content Include="Views\Question\DeleteReponse.cshtml" />
     <Content Include="Views\OuifundAdmin\Register.cshtml" />
     <Content Include="Views\Home\RegisterAdherent.cshtml" />
+    <Content Include="Views\Question\ChangeStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

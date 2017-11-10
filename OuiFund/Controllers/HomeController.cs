@@ -41,17 +41,25 @@ namespace OuiFund.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.User.ActiveUser = true;
-                _userService.Create(model.User);
-                model.Users = _userService.GetAll();
-                model.User = null;
-                return RedirectToAction("Questionnaire", "Question");
+                User u = _userService.getUserByEmail(model.User.AdresseEmail);
+                if(u == null)
+                {
+                    model.User.ActiveUser = true;
+                    _userService.Create(model.User);
+                    model.Users = _userService.GetAll();
+                    model.User = null;
+                    return RedirectToAction("Questionnaire", "Question");
+                }
+                else
+                {
+                    ViewBag.Msg = "Votre Email Existe déjà, Veuillez Saisir un autre";
+                    return View();
+                }
             }
             else
             {
                 return View();
             }
-
         }
 
         public ActionResult Users()
@@ -60,15 +68,6 @@ namespace OuiFund.Controllers
             return View(users);
         }
 
-        [HttpGet]
-        public ActionResult Delete(int userId)
-        {
-            var user = _userService.getUserById(userId);
-
-            return View(user);
-        }
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirm(int userId)
         {
             var user = _userService.getUserById(userId);

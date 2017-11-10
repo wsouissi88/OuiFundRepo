@@ -13,19 +13,19 @@
 </p>
 <table class="table table-bordered table-hover">
     <tr>
-        <th>
+        <th class="col-md-4" style="text-align: center;">
             @Html.DisplayNameFor(model => model.reponseQuestion.DescriptionQuest)
         </th>
-        <th>
+        <th class="col-md-2" style="text-align: center;">
             @Html.DisplayNameFor(model => model.TextReponse)
         </th>
-        <th>
+        <th class="col-md-1" style="text-align: center;">
             @Html.DisplayNameFor(model => model.ValeurReponse)
         </th>
-        <th>
+        <th class="col-md-4" style="text-align: center;">
             @Html.DisplayNameFor(model => model.AnalyseReponse)
         </th>
-        <th></th>
+        <th class="col-md-1"></th>
     </tr>
 
     @foreach (var item in Model)

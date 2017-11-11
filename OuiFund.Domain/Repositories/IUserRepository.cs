@@ -9,5 +9,6 @@ namespace OuiFund.Domain.Repositories
 {
     public interface IUserRepository : IBaseRepository<User>
     {
+        User GetByCodeAndPassword(string email, string password);
     }
 }

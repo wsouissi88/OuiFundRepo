@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+}
+<div class="row" style="height:60px">
+</div>
+
+
+<h3>
+    <p>
+        @{
+        var controller = ViewData["controllerName"] != null ? ViewData["controllerName"].ToString() : string.Empty;
+        var action = ViewData["actionName"] != null ? ViewData["actionName"].ToString() : string.Empty;
+    }
+    La permission " @controller / @action"
+
+    n'est pas attribué à votre rôle.
+    <br /> Veuillez contacter l'administrateur.
+</p>
+</h3>

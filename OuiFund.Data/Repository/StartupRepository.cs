@@ -11,7 +11,7 @@ namespace OuiFund.Data.Repository
 {
     public class StartupRepository : BaseRepository<StartUp>, IStartupRepository
     {
-        public StartupRepository(DbContext context) : base(context)
+        public StartupRepository(OuiFundContext context) : base(context)
         {
         }
     }

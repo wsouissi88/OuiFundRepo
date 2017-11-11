@@ -11,7 +11,7 @@ namespace OuiFund.Data.Repository
 {
     public class DossierRepository : BaseRepository<Dossier>, IDossierRepository
     {
-        public DossierRepository(DbContext context) : base(context)
+        public DossierRepository(OuiFundContext context) : base(context)
         {
         }
     }

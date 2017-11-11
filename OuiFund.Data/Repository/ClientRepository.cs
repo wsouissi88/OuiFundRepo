@@ -11,7 +11,7 @@ namespace OuiFund.Data.Repository
 {
     public class ClientRepository : BaseRepository<Client>, IClientRepository
     {
-        public ClientRepository(DbContext context) : base(context)
+        public ClientRepository(OuiFundContext context) : base(context)
         {
         }
     }

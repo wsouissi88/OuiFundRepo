@@ -11,7 +11,7 @@ namespace OuiFund.Data.Repository
 {
     public class CategorieRepository : BaseRepository<CategorieQuest>, ICategorieRepository
     {
-        public CategorieRepository(DbContext context) : base(context)
+        public CategorieRepository(OuiFundContext context) : base(context)
         {
         }
     }

@@ -1,5 +1,6 @@
 ﻿using OuiFund.Domain;
 using OuiFund.Domain.Model;
+using OuiFund.Infrastructure.Mvc;
 using OuiFund.Models;
 using OuiFund.Services.IServices;
 using System;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 namespace OuiFund.Controllers
 {
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IUserService _userService { get; set; }
         private IAdherentService _adhService { get; set; }
@@ -107,35 +108,35 @@ namespace OuiFund.Controllers
             return View();
         }
 
-        public ActionResult RegisterAdherent()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult RegisterAdherent(Adherent adherent)
-        {
-            if (ModelState.IsValid)
-            {
-                adherent.dossierAdherent = new Dossier()
-                {
-                    StatusDossier = "Dossier en lancement",
-                    ReferenceDossier = "AdherentStartUp",
-                    startupDossier = new StartUp()
-                    {
-                        NomStartup = "OuiCloud",
-                        CreationStartup = DateTime.Now
-                    }
-                };
+        //public ActionResult RegisterAdherent()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult RegisterAdherent(Adherent adherent)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        adherent.dossierAdherent = new Dossier()
+        //        {
+        //            StatusDossier = "Dossier en lancement",
+        //            ReferenceDossier = "AdherentStartUp",
+        //            startupDossier = new StartUp()
+        //            {
+        //                NomStartup = "OuiCloud",
+        //                CreationStartup = DateTime.Now
+        //            }
+        //        };
 
-                // get user by email 
-                adherent.UtilisateurID = 1;
-                //_strService.ajouterStartup(s);
-                //_dossService.ajouterDossier(d);                
-                adherent.ActiveUser = true;
-                _adhService.registerAdherent(adherent);
-            }
-            return View();
-        }
+        //        // get user by email 
+        //        adherent.UtilisateurID = 1;
+        //        //_strService.ajouterStartup(s);
+        //        //_dossService.ajouterDossier(d);                
+        //        adherent.ActiveUser = true;
+        //        _adhService.registerAdherent(adherent);
+        //    }
+        //    return View();
+        //}
     }
 }

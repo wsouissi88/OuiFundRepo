@@ -43,6 +43,7 @@
     <Compile Include="IServices\IAdherentService.cs" />
     <Compile Include="IServices\ICategorieService.cs" />
     <Compile Include="IServices\IDossierService.cs" />
+    <Compile Include="IServices\IEncryptionService.cs" />
     <Compile Include="IServices\IQuestionService.cs" />
     <Compile Include="IServices\IReponseService.cs" />
     <Compile Include="IServices\IStartupService.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Services\AdherentService.cs" />
     <Compile Include="Services\CategorieService.cs" />
     <Compile Include="Services\DossierService.cs" />
+    <Compile Include="Services\EncryptionService.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="Services\ReponseService.cs" />
     <Compile Include="Services\StartupService.cs" />
@@ -57,6 +59,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OuiFund.Common\OuiFund.Common.csproj">
+      <Project>{428e9722-68a1-4520-8714-4f5227f35f17}</Project>
+      <Name>OuiFund.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OuiFund.Data\OuiFund.Data.csproj">
       <Project>{2a4bdbea-c029-4e5f-a3fb-340db405b2f6}</Project>
       <Name>OuiFund.Data</Name>

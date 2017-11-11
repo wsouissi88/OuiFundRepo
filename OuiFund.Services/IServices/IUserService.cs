@@ -12,6 +12,7 @@ namespace OuiFund.Services.IServices
     {
         User getUserById(int iduser);
         User getUserByEmail(string email);
+        User GetByCodeAndPassword(string email, string password);
         void Create(User user);
         List<User> GetAll();
         int countUsers();

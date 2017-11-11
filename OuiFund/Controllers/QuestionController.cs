@@ -1,5 +1,6 @@
 ﻿using OuiFund.Data;
 using OuiFund.Domain.Model;
+using OuiFund.Infrastructure.Mvc;
 using OuiFund.Models;
 using OuiFund.Services.IServices;
 using System;
@@ -10,7 +11,7 @@ using System.Web.Mvc;
 
 namespace OuiFund.Controllers
 {
-    public class QuestionController : Controller
+    public class QuestionController : BaseController
     {
         private IQuestionService questionService;
         private ICategorieService categorieService;

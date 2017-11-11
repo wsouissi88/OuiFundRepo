@@ -8,40 +8,40 @@ using System.Threading.Tasks;
 
 namespace OuiFund.Data
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private DbContext _context {get; set;} 
-        public BaseRepository(DbContext context)
+        public readonly OuiFundContext Context;
+        public BaseRepository(OuiFundContext context)
         {
-            _context = context;
+            Context = context;
         }
         public void Create(T entity)
         {
-            _context.Set<T>().Add(entity);
-            _context.SaveChanges();
+            Context.Set<T>().Add(entity);
+            Context.SaveChanges();
         }
 
         public void Delete(T entity)
         {
-            _context.Set<T>().Remove(entity);
-            _context.SaveChanges();
+            Context.Set<T>().Remove(entity);
+            Context.SaveChanges();
         }
 
         public IQueryable<T> GetAll()
         {
-            IQueryable<T> query = _context.Set<T>();
+            IQueryable<T> query = Context.Set<T>();
             return query;
         }
 
         public T GetById(int id)
         {
-            return _context.Set<T>().Find(id);
+            return Context.Set<T>().Find(id);
         }
 
         public void Update(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            Context.Entry(entity).State = EntityState.Modified;
+            Context.SaveChanges();
         }
     }
 }

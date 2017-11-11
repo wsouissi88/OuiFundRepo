@@ -2,6 +2,7 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Connexion";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -28,14 +29,7 @@
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Connexion" class="btn btn-default" />
@@ -44,18 +38,10 @@
                 <p>
                     @Html.ActionLink("S'inscrire comme nouvel utilisateur", "Register")
                 </p>
-                @* Activer ceci une fois que la confirmation de votre compte est activée pour la fonctionnalité de réinitialisation du mot de passe
-                    <p>
-                        @Html.ActionLink("Vous avez oublié votre mot de passe ?", "ForgotPassword")
-                    </p>*@
             }
         </section>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
+
 </div>
 
 @section Scripts {

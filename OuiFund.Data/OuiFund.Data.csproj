@@ -95,6 +95,10 @@
     <Compile Include="Migrations\201711021223300_initial.Designer.cs">
       <DependentUpon>201711021223300_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711111456206_AddPassword.cs" />
+    <Compile Include="Migrations\201711111456206_AddPassword.Designer.cs">
+      <DependentUpon>201711111456206_AddPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OuiFundContext.cs" />
     <Compile Include="Repository\AdherentRepository.cs" />
@@ -121,6 +125,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711021223300_initial.resx">
       <DependentUpon>201711021223300_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711111456206_AddPassword.resx">
+      <DependentUpon>201711111456206_AddPassword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

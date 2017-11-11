@@ -32,6 +32,12 @@ namespace OuiFund.Services.Services
         {
             return _userRepository.GetAll().Where(u => u.AdresseEmail == email).FirstOrDefault();
         }
+
+        public User GetByCodeAndPassword(string email, string password)
+        {
+            return _userRepository.GetByCodeAndPassword(email, password);
+        }
+
         public void Create(User user)
         {
             _userRepository.Create(user);

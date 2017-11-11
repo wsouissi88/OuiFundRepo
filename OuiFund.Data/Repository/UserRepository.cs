@@ -11,8 +11,15 @@ namespace OuiFund.Data
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        public UserRepository(DbContext context) : base(context)
+        public UserRepository(OuiFundContext context) : base(context)
         {  
+
+        }
+        public User GetByCodeAndPassword(string email, string password)
+        {
+
+            return Context.Users.FirstOrDefault(b => b.AdresseEmail == email && b.Password == password);
+
         }
     }
 }

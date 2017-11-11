@@ -11,7 +11,7 @@ namespace OuiFund.Data.Repository
 {
     public class AdherentRepository : BaseRepository<Adherent>, IAdherentRepository
     {
-        public AdherentRepository(DbContext context) : base(context)
+        public AdherentRepository(OuiFundContext context) : base(context)
         {
         }
     }

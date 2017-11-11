@@ -34,7 +34,7 @@ namespace OuiFund.App_Start
      
         private static void InitializeContainer(Container container)
         {
-            container.Register<DbContext, OuiFundContext>(Lifestyle.Scoped);
+            container.Register<OuiFundContext, OuiFundContext>(Lifestyle.Scoped);
             container.Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
             container.Register<IUserService, UserService>(Lifestyle.Scoped);
 
@@ -54,6 +54,8 @@ namespace OuiFund.App_Start
             container.Register<ICategorieService, CategorieService>(Lifestyle.Scoped);
             container.Register<IReponseRepository, ReponseRepository>(Lifestyle.Scoped);
             container.Register<IReponseService, ReponseService>(Lifestyle.Scoped);
+
+            container.Register<IEncryptionService, EncryptionService>(Lifestyle.Scoped);
 
         }
     }

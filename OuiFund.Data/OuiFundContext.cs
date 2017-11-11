@@ -8,7 +8,7 @@ namespace OuiFund.Data
 {
     public class OuiFundContext : DbContext
     {
-        public OuiFundContext() : base("Data Source = DELL-PC\\SQLEXPRESS ; Initial Catalog=OuiFundDB ; Integrated Security=True") // base("OuiFund")
+        public OuiFundContext() : base("OuiFund")
         {
             Database.SetInitializer<OuiFundContext>(null);
         }

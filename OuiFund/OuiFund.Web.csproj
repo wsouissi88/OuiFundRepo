@@ -223,11 +223,16 @@
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Mvc\BaseController.cs" />
+    <Compile Include="Infrastructure\Mvc\HtmlHelperExtensions.cs" />
+    <Compile Include="Infrastructure\Security\CustomPrincipal.cs" />
+    <Compile Include="Infrastructure\Security\SecurityHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -540,9 +545,12 @@
     <Content Include="Views\OuifundAdmin\Register.cshtml" />
     <Content Include="Views\Home\RegisterAdherent.cshtml" />
     <Content Include="Views\Question\ChangeStatus.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Error\Permission.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

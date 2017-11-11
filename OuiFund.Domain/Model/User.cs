@@ -19,6 +19,7 @@ namespace OuiFund.Domain.Model
         [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")]
         [Required(ErrorMessage = "Adresse email obligatoire")]
         public string AdresseEmail { get; set; }
+        public string Password { get; set; }
 
         [Display(Name = "Status (Active)")]
         public bool ActiveUser { get; set; }

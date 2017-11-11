@@ -28,10 +28,10 @@ namespace OuiFund.Services.Services
             return _userRepository.GetById(iduser);
         }
 
-        //public User getUserByEmail(string email)
-        //{
-            
-        //}
+        public User getUserByEmail(string email)
+        {
+            return _userRepository.GetAll().Where(u => u.AdresseEmail == email).FirstOrDefault();
+        }
         public void Create(User user)
         {
             _userRepository.Create(user);

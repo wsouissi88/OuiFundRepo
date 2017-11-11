@@ -46,7 +46,7 @@ namespace OuiFund.Services.Services
         {
             List<Question> listQuestion = new List<Question>();
             Random random = new Random();
-            List<Question> questions = getQuestionsByType(type);
+            List<Question> questions = getQuestionsByType(type).Where(q=>q.StatusQuest==true).ToList();
             while (listQuestion.Count < count)
             {
                 int index = random.Next(questions.Count);
@@ -56,12 +56,6 @@ namespace OuiFund.Services.Services
                     listQuestion.Add(question);
                 }
             }
-            //for (int i = 0; i < count; i++)
-            //{
-            //    int index = i + random.Next(questions.Count-i);
-            //    Question question = questions[index];
-            //    listQuestion.Add(question);
-            //}
             return listQuestion;
         }
 

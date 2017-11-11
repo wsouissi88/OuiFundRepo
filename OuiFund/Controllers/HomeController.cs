@@ -41,17 +41,25 @@ namespace OuiFund.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.User.ActiveUser = true;
-                _userService.Create(model.User);
-                model.Users = _userService.GetAll();
-                model.User = null;
-                return RedirectToAction("Questionnaire", "Question");
+                User u = _userService.getUserByEmail(model.User.AdresseEmail);
+                if(u == null)
+                {
+                    model.User.ActiveUser = true;
+                    _userService.Create(model.User);
+                    model.Users = _userService.GetAll();
+                    model.User = null;
+                    return RedirectToAction("Questionnaire", "Question");
+                }
+                else
+                {
+                    ViewBag.Msg = "Votre Email Existe déjà, Veuillez Saisir un autre";
+                    return View();
+                }
             }
             else
             {
                 return View();
             }
-
         }
 
         public ActionResult Users()
@@ -60,21 +68,43 @@ namespace OuiFund.Controllers
             return View(users);
         }
 
-        [HttpGet]
-        public ActionResult Delete(int userId)
-        {
-            var user = _userService.getUserById(userId);
-
-            return View(user);
-        }
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirm(int userId)
         {
             var user = _userService.getUserById(userId);
 
             _userService.supprimerUser(user);
             return RedirectToAction("Users");
+        }
+
+        public ActionResult RegisterAdherent()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegisterAdherent(Adherent adherent)
+        {
+            if (ModelState.IsValid)
+            {
+                adherent.dossierAdherent = new Dossier()
+                {
+                    StatusDossier = "Dossier en lancement",
+                    ReferenceDossier = "AdherentStartUp",
+                    startupDossier = new StartUp()
+                    {
+                        NomStartup = "OuiCloud",
+                        CreationStartup = DateTime.Now
+                    }
+                };
+
+                // get user by email 
+                adherent.UtilisateurID = 1;
+                //_strService.ajouterStartup(s);
+                //_dossService.ajouterDossier(d);                
+                adherent.ActiveUser = true;
+                _adhService.registerAdherent(adherent);
+            }
+            return View();
         }
 
         public ActionResult RegisterAdherent()

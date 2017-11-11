@@ -13,19 +13,19 @@
 </p>
 <table class="table table-bordered table-hover">
     <tr>
-        <th>
+        <th class="col-md-2" style="text-align: center;">
             @Html.DisplayNameFor(model => model.categorieQuestion.NomCategorie)
         </th>
-        <th>
+        <th class="col-md-5" style="text-align: center;">
             @Html.DisplayNameFor(model => model.DescriptionQuest)
         </th>
-        <th>
+        <th class="col-md-2" style="text-align: center;">
             @Html.DisplayNameFor(model => model.ReferenceQuest)
         </th>
-        <th>
+        <th class="col-md-2" style="text-align: center;">
             @Html.DisplayNameFor(model => model.StatusQuest)
         </th>
-        <th></th>
+        <th class="col-md-1"></th>
     </tr>
 
     @foreach (var item in Model)
@@ -40,10 +40,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ReferenceQuest)
             </td>
-            <td>
+            @if (item.StatusQuest == true)
+            {
+                <td style="text-align:center">
+                    <h5 style="color:forestgreen">Activée</h5>
+                </td>
+            }
+            else
+            {
+                <td style="text-align:center">
+                    <h5 style="color:red">Désactivée</h5>
+                </td>
+            }
+            @*<td style="text-align:center">                
                 @Html.DisplayFor(modelItem => item.StatusQuest)
-            </td>
+            </td>*@
             <td style="text-align: center;">
+                @Html.ActionLink(" ", "ChangeStatus", new { QuestionId = item.QuestionID }, new { @class = "fa fa-wrench" }) |
                 @Html.ActionLink(" ", "Edit", new { id = item.QuestionID }, new { @class = "fa fa-pencil" }) |
                 @Html.ActionLink(" ", "DeleteQuestion", new { id = item.QuestionID }, new { @class = "fa fa-trash-o" })
             </td>

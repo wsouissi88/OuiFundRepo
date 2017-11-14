@@ -7,16 +7,18 @@
         <ul id="main-menu" class="nav navbar-nav navbar-right">
             <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> Jihed Baâtout
+                    <span class="glyphicon glyphicon-user padding-right-small" style="position:relative;top: 3px;"></span> @User.Identity.Name
                     <i class="fa fa-caret-down"></i>
                 </a>
 
                 <ul class="dropdown-menu">
                     <li><a href="">Profil</a></li>
                     <li class="divider"></li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()" class="navCustom" style="width: 125px">
-                                <div class="button-icon icon-logout" style="width:100px;color:#434343">Logout</div>
-                            </a></li>
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="navCustom" style="width: 125px">
+                            <div class="button-icon icon-logout" style="width:100px;color:#434343"> Logout </div>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

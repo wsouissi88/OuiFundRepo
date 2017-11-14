@@ -97,46 +97,13 @@ namespace OuiFund.Controllers
                         CreationStartup = DateTime.Now
                     }
                 };
-
-                // get user by email 
-                adherent.UtilisateurID = 1;
-                //_strService.ajouterStartup(s);
-                //_dossService.ajouterDossier(d);                
+                User user = _userService.getUserByEmail(adherent.AdresseEmail);
+                adherent.AdresseEmail = user.AdresseEmail;
+                adherent.Password = user.Password;           
                 adherent.ActiveUser = true;
                 _adhService.registerAdherent(adherent);
             }
             return View();
-        }
-
-        //public ActionResult RegisterAdherent()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult RegisterAdherent(Adherent adherent)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        adherent.dossierAdherent = new Dossier()
-        //        {
-        //            StatusDossier = "Dossier en lancement",
-        //            ReferenceDossier = "AdherentStartUp",
-        //            startupDossier = new StartUp()
-        //            {
-        //                NomStartup = "OuiCloud",
-        //                CreationStartup = DateTime.Now
-        //            }
-        //        };
-
-        //        // get user by email 
-        //        adherent.UtilisateurID = 1;
-        //        //_strService.ajouterStartup(s);
-        //        //_dossService.ajouterDossier(d);                
-        //        adherent.ActiveUser = true;
-        //        _adhService.registerAdherent(adherent);
-        //    }
-        //    return View();
-        //}
+        }        
     }
 }

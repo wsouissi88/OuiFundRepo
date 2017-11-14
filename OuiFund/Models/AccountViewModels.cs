@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OuiFund.Models
@@ -68,6 +69,43 @@ namespace OuiFund.Models
         [EmailAddress]
         [Display(Name = "Courrier électronique")]
         public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Mot de passe")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmer le mot de passe ")]
+        [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
+        public string ConfirmPassword { get; set; }
+    }
+    public class AdherentRegisterVM
+    {
+        [Display(Name = "Nom")]
+        [Required(ErrorMessage = "Nom obligatoire")]
+        public string NomUser { get; set; }
+
+        [Display(Name = "Prénom")]
+        public string PrenomUser { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Courrier électronique")]
+        public string Email { get; set; }
+
+        [Display(Name = "Num Tél")]
+        [Required(ErrorMessage = "Numéro de Tél obligatoire")]
+        [DataType(DataType.PhoneNumber)]
+        public string TelUser { get; set; }
+
+        [Display(Name = "Date de Naissance")]
+        public DateTime DateNaissance { get; set; }
+
+        [Display(Name = "Identifiant")]
+        [Required(ErrorMessage = "Identifiant obligatoire")]
+        public string LoginUser { get; set; }        
 
         [Required]
         [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]

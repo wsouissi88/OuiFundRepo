@@ -14,5 +14,9 @@ namespace OuiFund.Data.Repository
         public AdherentRepository(OuiFundContext context) : base(context)
         {
         }
+        public Adherent getAccessAdherent(string login, string password)
+        {
+            return Context.Adherents.FirstOrDefault(a => a.LoginUser == login && a.Password == password);
+        }
     }
 }

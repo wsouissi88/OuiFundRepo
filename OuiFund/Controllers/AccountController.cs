@@ -59,6 +59,7 @@ namespace OuiFund.Controllers
             if (user != null)
             {
                 SignIn(user, booleanTemp, HttpContext);
+                ViewBag.UserName = user.AdresseEmail;
                 return RedirectToLocal();
             }
 
@@ -77,7 +78,7 @@ namespace OuiFund.Controllers
             FormsAuthentication.SetAuthCookie(user.AdresseEmail, false);
             var expirationDate = DateTime.Now.AddDays(1);
 
-            var ticket = new FormsAuthenticationTicket(1, "OuiFund", DateTime.Now, expirationDate,
+            var ticket = new FormsAuthenticationTicket(1, user.AdresseEmail, DateTime.Now, expirationDate,
                                                      createPersistentCookie, 1 + "," + user.UtilisateurID.ToString() + "," + user.AdresseEmail.ToString() ,// + "," + user.FirstName + "," + user.LastName,
                                                      FormsAuthentication.FormsCookiePath);
 

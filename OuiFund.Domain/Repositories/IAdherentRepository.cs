@@ -9,5 +9,6 @@ namespace OuiFund.Domain.Repositories
 {
     public interface IAdherentRepository : IBaseRepository<Adherent>
     {
+        Adherent getAccessAdherent(string login, string password);
     }
 }

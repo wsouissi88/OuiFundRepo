@@ -35,15 +35,17 @@ namespace OuiFund.Controllers
             var categories = categorieService.getCategories();
             return View(categories);
         }
-        public ActionResult Questions()
-        {   // All Questions
-            var questions = questionService.getListQuestions();
-
-            // Libre Question
-            //var questions = questionService.getQuestionsByType(TypeQuestion.Libre_Question);
-
-            // Random 2 Questions QCM
-            //var questions = questionService.RandomQuestions(TypeQuestion.QCM_Question, 2);
+        public ActionResult Questions(TypeQuestion ? type)
+        {   
+            var questions = new List<Question>();
+            if(type == null)
+            {
+                questions = questionService.getListQuestions();
+            }
+            else
+            {
+                questions = questionService.getQuestionsByType((TypeQuestion)type);
+            }  
             return View(questions);
         }
 
@@ -62,11 +64,11 @@ namespace OuiFund.Controllers
             return RedirectToAction("Questions");
         }
 
-        public JsonResult Questionnaires()
+        public JsonResult QuestionnairesQCM()
         {
             List<string> quests = new List<string>();
             List<Reponse> rep = new List<Reponse>();
-            List<Question> questions = questionService.RandomQuestions(TypeQuestion.QCM_Question, 5);
+            List<Question> questions = questionService.RandomQuestions(TypeQuestion.QCM_Question, 10);
             foreach (Question q in questions)
             {
                 rep = reponseService.getReponsesQuestion(q.QuestionID);
@@ -79,6 +81,29 @@ namespace OuiFund.Controllers
             }
             return Json(quests, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult QuestionnairesNoted()
+        {
+            List<string> quests = new List<string>();
+            List<Reponse> rep = new List<Reponse>();
+            List<Question> questions = questionService.RandomQuestions(TypeQuestion.Noted_Question, 10);
+            foreach (Question q in questions)
+            {                
+                quests.Add(q.QuestionID + ":" + q.DescriptionQuest);
+            }
+            return Json(quests, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult QuestionnairesRedact()
+        {
+            List<string> quests = new List<string>();
+            List<Reponse> rep = new List<Reponse>();
+            List<Question> questions = questionService.RandomQuestions(TypeQuestion.Libre_Question, 10);
+            foreach (Question q in questions)
+            {
+                quests.Add(q.QuestionID + ":" + q.DescriptionQuest);
+            }
+            return Json(quests, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult Reponse(int questId)
         {
             List<string> reponses = new List<string>();
@@ -97,16 +122,7 @@ namespace OuiFund.Controllers
 
         public ActionResult Reponses()
         {
-            var reponses = new List<Reponse>();
-
-            //if (questID != 0)
-            //{
-            //    reponses = reponseService.getReponsesQuestion(questID);
-            //}
-            //else
-            //{
-                reponses = reponseService.getListReponses();
-            //}
+            var reponses = reponseService.getListReponses();
             return View(reponses);
         }
 
@@ -176,18 +192,44 @@ namespace OuiFund.Controllers
                     categorieId = model.CategorieID,
                     categorieQuestion = cat
                 };
-                List<string> listReponses = model.reponse.Split(',').ToList<string>();
-                for(int i=0; i < listReponses.Count; i++)
+                switch (model.TypeQuest)
                 {
-                    List<string> reponseAnalyses = listReponses[i].Split(':').ToList<string>();
-                    Reponse r = new Reponse
-                    {
-                        TextReponse = reponseAnalyses[0],
-                        AnalyseReponse = reponseAnalyses[1],
-                        ValeurReponse = i
-                    };
-                    q.Reponses.Add(r);
-                }                
+                    case TypeQuestion.QCM_Question:
+                        List<string> listReponses = model.reponse.Split(',').ToList<string>();
+                        for (int i = 0; i < listReponses.Count; i++)
+                        {
+                            List<string> reponseAnalyses = listReponses[i].Split(':').ToList<string>();
+                            Reponse r = new Reponse
+                            {
+                                TextReponse = reponseAnalyses[0],
+                                AnalyseReponse = reponseAnalyses[1],
+                                ValeurReponse = i
+                            };
+                            q.Reponses.Add(r);
+                        }
+                        break;
+                    case TypeQuestion.Noted_Question:
+
+                        break;
+                    case TypeQuestion.Libre_Question:
+
+                        break;
+                }
+                //if(model.TypeQuest == TypeQuestion.QCM_Question)
+                //{
+                //    List<string> listReponses = model.reponse.Split(',').ToList<string>();
+                //    for (int i = 0; i < listReponses.Count; i++)
+                //    {
+                //        List<string> reponseAnalyses = listReponses[i].Split(':').ToList<string>();
+                //        Reponse r = new Reponse
+                //        {
+                //            TextReponse = reponseAnalyses[0],
+                //            AnalyseReponse = reponseAnalyses[1],
+                //            ValeurReponse = i
+                //        };
+                //        q.Reponses.Add(r);
+                //    }
+                //}                               
                 questionService.ajouterQuestion(q);
             }
             return View();

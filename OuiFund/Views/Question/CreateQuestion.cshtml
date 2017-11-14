@@ -69,36 +69,13 @@
                             @Html.ValidationMessageFor(model => model.reponse, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    @*<div class="form-group">
-                        @Html.LabelFor(model => model.reponse.TextReponse, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.reponse.TextReponse, new { htmlAttributes = new { @class = "form-control col-md-4" } })
-                            @Html.ValidationMessageFor(model => model.reponse.TextReponse, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.reponse.ValeurReponse, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.reponse.ValeurReponse, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.reponse.ValeurReponse, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.reponse.AnalyseReponse, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.reponse.AnalyseReponse, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.reponse.AnalyseReponse, "", new { @class = "text-danger" })
-                        </div>
-                    </div>*@
                 </div>
             </div>
             <div id="noted" style="display:none">
-                <p>question notée </p>
+                <p>Question notée entre 0 et 10 </p>
             </div>
             <div id="redact" style="display:none">
-                <p>question de redaction </p>
+                <p>Question avec champ de rédaction </p>
             </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

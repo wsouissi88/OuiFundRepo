@@ -11,6 +11,22 @@
 <p>
     @Html.ActionLink(" Ajouter", "CreateQuestion", null, new { @class = "fa fa-plus" })
 </p>
+<div>
+    <div class="col-md-offset-2 col-md-2">
+        @Html.ActionLink(" QCM", "Questions", new { type = "QCM_Question"}, new { @class = "btn btn-primary",@style = "background-color:green;background-image:none" })
+        @*<input type="submit" value="QCM" class="btn btn-primary" style="background-color:green;background-image:none"/>*@
+    </div>
+    <div class="col-md-offset-2 col-md-2">
+        @Html.ActionLink(" Notée", "Questions", new { type = "Noted_Question" }, new { @class = "btn btn-primary", @style = "background-color:blue;background-image:none" })
+        @*<input type="submit" value="Notée" class="btn btn-primary" style="background-color:blue;background-image:none"/>*@
+    </div>
+    <div class="col-md-offset-2 col-md-2">
+        @Html.ActionLink(" Redaction", "Questions", new { type = "Libre_Question" }, new { @class = "btn btn-primary", @style = "background-color:crimson;background-image:none" })
+        @*<input type="submit" value="Redaction" class="btn btn-primary" style="background-color:crimson;background-image:none"/>*@
+    </div>
+</div>
+<br />
+<br />
 <table class="table table-bordered table-hover">
     <tr>
         <th class="col-md-2" style="text-align: center;">

@@ -47,7 +47,7 @@ namespace OuiFund.Services.Services
             List<Question> listQuestion = new List<Question>();
             Random random = new Random();
             List<Question> questions = getQuestionsByType(type).Where(q=>q.StatusQuest==true).ToList();
-            while (listQuestion.Count < count)
+            while (listQuestion.Count < count && listQuestion.Count != questions.Count)
             {
                 int index = random.Next(questions.Count);
                 Question question = questions[index];

@@ -75,7 +75,7 @@ namespace OuiFund.Controllers
                 string reponses = "";
                 foreach(Reponse r in rep)
                 {
-                    reponses += ":" + r.TextReponse;
+                    reponses += ":" + r.ReponseID + "?" + r.TextReponse;
                 }
                 quests.Add(q.QuestionID+":"+q.DescriptionQuest+""+reponses);
             }
@@ -102,6 +102,21 @@ namespace OuiFund.Controllers
                 quests.Add(q.QuestionID + ":" + q.DescriptionQuest);
             }
             return Json(quests, JsonRequestBehavior.AllowGet);
+        }
+        
+        // get listForResponse & check IdQuestion/IdReponse 
+        // Add reponse to user in new table Result 
+        public JsonResult saveResult(List<string> lst)
+        {
+            List<string> listreponse = new List<string>();
+            for(int i = 0; i < lst.Count; i++)
+            {
+                string[] result = lst[i].Split(':');
+                int idQuestion = Int32.Parse(result[0]);
+                int idReponse = Int32.Parse(result[1]);
+                listreponse.Add("Question:"+idQuestion+" Reponse:"+idReponse);
+            }
+            return Json(listreponse, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Reponse(int questId)

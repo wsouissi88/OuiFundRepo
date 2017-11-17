@@ -26,6 +26,10 @@ namespace OuiFund.Services.Services
             else { return false; }
         }
 
+        public Reponse getReponseById(int reponseId)
+        {
+            return repoRepository.GetById(reponseId);
+        }
         public List<Reponse> getListReponses()
         {
             return repoRepository.GetAll().ToList();

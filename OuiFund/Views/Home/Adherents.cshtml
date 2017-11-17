@@ -1,0 +1,67 @@
+﻿@model IEnumerable<OuiFund.Domain.Model.Adherent>
+
+@{
+    ViewBag.Title = "Adherents";
+    Layout = "~/Views/OuifundAdmin/Index.cshtml";
+}
+
+<h2>Adherents</h2>
+
+<p>
+        @Html.ActionLink("Create", "RegisterAdherent")
+    </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrenomUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateNaissance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdresseEmail)
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.dossierAdherent.StatusDossier)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrenomUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateNaissance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdresseEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActiveUser)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.dossierAdherent.StatusDossier)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UtilisateurID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UtilisateurID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UtilisateurID })
+        </td>
+    </tr>
+}
+
+</table>

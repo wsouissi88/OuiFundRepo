@@ -10,6 +10,10 @@ namespace OuiFund.Domain.Model
 {
     public class User
     {
+        public User()
+        {
+            this.Analyses = new HashSet<Analyse>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UtilisateurID { get; set; }
@@ -23,5 +27,7 @@ namespace OuiFund.Domain.Model
 
         [Display(Name = "Status (Active)")]
         public bool ActiveUser { get; set; }
+
+        public virtual ICollection<Analyse> Analyses { get; set; }
     }
 }

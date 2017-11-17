@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Configuration\AdherentConfiguration.cs" />
+    <Compile Include="Configuration\AnalyseConfiguration.cs" />
     <Compile Include="Configuration\CategorieConfiguration.cs" />
     <Compile Include="Configuration\ClientConfiguration.cs" />
     <Compile Include="Configuration\DocumentConfiguration.cs" />
@@ -99,9 +100,22 @@
     <Compile Include="Migrations\201711111456206_AddPassword.Designer.cs">
       <DependentUpon>201711111456206_AddPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711171025115_analyseDataBase.cs" />
+    <Compile Include="Migrations\201711171025115_analyseDataBase.Designer.cs">
+      <DependentUpon>201711171025115_analyseDataBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171622081_adherentChange.cs" />
+    <Compile Include="Migrations\201711171622081_adherentChange.Designer.cs">
+      <DependentUpon>201711171622081_adherentChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171741365_usersChanges.cs" />
+    <Compile Include="Migrations\201711171741365_usersChanges.Designer.cs">
+      <DependentUpon>201711171741365_usersChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OuiFundContext.cs" />
     <Compile Include="Repository\AdherentRepository.cs" />
+    <Compile Include="Repository\AnalyseRepository.cs" />
     <Compile Include="Repository\CategorieRepository.cs" />
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\DocumentRepository.cs" />
@@ -128,6 +142,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711111456206_AddPassword.resx">
       <DependentUpon>201711111456206_AddPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171025115_analyseDataBase.resx">
+      <DependentUpon>201711171025115_analyseDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171622081_adherentChange.resx">
+      <DependentUpon>201711171622081_adherentChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171741365_usersChanges.resx">
+      <DependentUpon>201711171741365_usersChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

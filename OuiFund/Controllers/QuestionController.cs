@@ -16,12 +16,17 @@ namespace OuiFund.Controllers
         private IQuestionService questionService;
         private ICategorieService categorieService;
         private IReponseService reponseService;
+        private IAnalyseService analyseService;
+        private IUserService userService;
 
-        public QuestionController(IReponseService reponse, IQuestionService quest, ICategorieService categ)
+        public QuestionController(IReponseService reponse, IQuestionService quest, ICategorieService categ, 
+                                    IAnalyseService analyse, IUserService user)
         {
             reponseService = reponse;
             questionService = quest;
             categorieService = categ;
+            analyseService = analyse;
+            userService = user;
         }
 
         // GET: Question
@@ -109,12 +114,45 @@ namespace OuiFund.Controllers
         public JsonResult saveResult(List<string> lst)
         {
             List<string> listreponse = new List<string>();
-            for(int i = 0; i < lst.Count; i++)
+            User u = userService.getUserById(12);
+
+            for (int i = 1; i < lst.Count; i++)
             {
-                string[] result = lst[i].Split(':');
-                int idQuestion = Int32.Parse(result[0]);
-                int idReponse = Int32.Parse(result[1]);
-                listreponse.Add("Question:"+idQuestion+" Reponse:"+idReponse);
+                Analyse analyse = new Analyse
+                {
+                    UtilisateurId = u.UtilisateurID,
+                    Utilisateur = u
+                };
+                if (lst[0] == "qcm")
+                {
+                    int idReponse = Int32.Parse(lst[i]);
+                    Reponse r = reponseService.getReponseById(idReponse);
+                    analyse.AnalyseModel = "QCM for User";
+                    analyse.TypeAnalyse = Analyse.AnalyseType.QCM;
+                    analyse.ReponseId = idReponse;
+                    analyse.Reponse = r;
+                }
+                else
+                {
+                    var rsl = lst[i].Split(':');
+                    int idQuestion = Int32.Parse(rsl[0]);
+                    Question q = questionService.getQuestionById(idQuestion);
+                    analyse.AnalyseModel = "Question for User";
+                    analyse.QuestionId = idQuestion;
+                    analyse.Question = q;
+                    if(lst[0] == "noted")
+                    {
+                        analyse.NoteQuestion = Int32.Parse(rsl[1]);
+                        analyse.TypeAnalyse = Analyse.AnalyseType.Notee;
+                    }
+                    else
+                    {
+                        analyse.TextQuestion = rsl[1];
+                        analyse.TypeAnalyse = Analyse.AnalyseType.Ouvert;
+                    }                    
+                }
+                analyseService.saveAnalyse(analyse);
+                listreponse.Add("");
             }
             return Json(listreponse, JsonRequestBehavior.AllowGet);
         }
@@ -130,6 +168,7 @@ namespace OuiFund.Controllers
             return Json(reponses, JsonRequestBehavior.AllowGet);
         }
 
+        [AllowAnonymous]
         public ActionResult Questionnaire()
         {
             return View();

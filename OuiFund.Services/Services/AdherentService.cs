@@ -23,6 +23,11 @@ namespace OuiFund.Services.Services
             adherentRepository.Create(a);
         }
 
+        public List<Adherent> getAdherents()
+        {
+            return adherentRepository.GetAll().ToList();
+        }
+
         public void supprimerAdherent(int id)
         {
             Adherent a = adherentRepository.GetById(id);

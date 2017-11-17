@@ -38,6 +38,7 @@ namespace OuiFund.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Utilisateur")]
         public ActionResult Index(HomeViewModel model)
         {
             if (ModelState.IsValid)
@@ -68,6 +69,11 @@ namespace OuiFund.Controllers
             var users = _userService.GetAll();
             return View(users);
         }
+        public ActionResult Adherents()
+        {
+            var users = _adhService.getAdherents();
+            return View(users);
+        }
 
         public ActionResult DeleteConfirm(int userId)
         {
@@ -84,7 +90,7 @@ namespace OuiFund.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RegisterAdherent(Adherent adherent)
-        {
+            {
             if (ModelState.IsValid)
             {
                 adherent.dossierAdherent = new Dossier()
@@ -97,9 +103,9 @@ namespace OuiFund.Controllers
                         CreationStartup = DateTime.Now
                     }
                 };
-                User user = _userService.getUserByEmail(adherent.AdresseEmail);
-                adherent.AdresseEmail = user.AdresseEmail;
-                adherent.Password = user.Password;           
+                adherent.DateNaissance = DateTime.Now;
+                adherent.AdresseEmail = "mail@mail.com";
+                adherent.Password = "aaaa";
                 adherent.ActiveUser = true;
                 _adhService.registerAdherent(adherent);
             }

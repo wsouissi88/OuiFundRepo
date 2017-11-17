@@ -13,6 +13,7 @@ namespace OuiFund.Domain.Model
         public Question()
         {
             this.Reponses = new HashSet<Reponse>();
+            this.AnalysesQ = new HashSet<Analyse>();
         }
 
         [Key]
@@ -36,6 +37,8 @@ namespace OuiFund.Domain.Model
 
         public int categorieId { get; set; }
         public virtual CategorieQuest categorieQuestion { get; set; }
+
+        public virtual ICollection<Analyse> AnalysesQ { get; set; }
     }
 
     public enum TypeQuestion

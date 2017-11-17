@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace OuiFund.Domain.Repositories
 {
-    public interface IAdherentRepository : IBaseRepository<Adherent>
+    public interface IAnalyseRepository : IBaseRepository<Analyse>
     {
-        //Adherent getAccessAdherent(string login, string password);
     }
 }

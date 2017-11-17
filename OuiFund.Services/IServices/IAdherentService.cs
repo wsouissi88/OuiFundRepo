@@ -10,6 +10,7 @@ namespace OuiFund.Services.IServices
     public interface IAdherentService
     {
         void registerAdherent(Adherent a);
+        List<Adherent> getAdherents();
         void updateProfileAdherent(Adherent a);
         void supprimerAdherent(int id);
     }

@@ -41,6 +41,9 @@ namespace OuiFund.App_Start
             container.Register<IAdherentRepository, AdherentRepository>(Lifestyle.Scoped);
             container.Register<IAdherentService, AdherentService>(Lifestyle.Scoped);
 
+            container.Register<IAnalyseRepository, AnalyseRepository>(Lifestyle.Scoped);
+            container.Register<IAnalyseService, AnalyseService>(Lifestyle.Scoped);
+
             container.Register<IClientRepository, ClientRepository>(Lifestyle.Scoped);
 
             container.Register<IDossierRepository, DossierRepository>(Lifestyle.Scoped);

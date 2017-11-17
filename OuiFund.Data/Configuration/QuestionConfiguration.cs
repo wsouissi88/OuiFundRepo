@@ -13,7 +13,7 @@ namespace OuiFund.Data.Configuration
         public QuestionConfiguration()
         {
             ToTable("Question");
-            HasRequired(q => q.categorieQuestion).WithMany(q => q.QuestionsCateg).HasForeignKey(q => q.categorieId);
+            HasRequired(q => q.categorieQuestion).WithMany(q => q.QuestionsCateg).HasForeignKey(q => q.categorieId);            
         }
     }
 }

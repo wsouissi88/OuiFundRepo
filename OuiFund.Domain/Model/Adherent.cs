@@ -24,14 +24,14 @@ namespace OuiFund.Domain.Model
         [Display(Name = "Date de Naissance")]
         public DateTime DateNaissance { get; set; }
 
-        [Display(Name = "Identifiant")]
-        [Required(ErrorMessage = "Identifiant obligatoire")]
-        public string LoginUser { get; set; }
+        //[Display(Name = "Identifiant")]
+        //[Required(ErrorMessage = "Identifiant obligatoire")]
+        //public string LoginUser { get; set; }
 
-        [Display(Name = "Mot de passe")]
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Mot de passe obligatoire")]
-        public string PasswordUser { get; set; }
+        //[Display(Name = "Mot de passe")]
+        //[DataType(DataType.Password)]
+        //[Required(ErrorMessage = "Mot de passe obligatoire")]
+        //public string PasswordUser { get; set; }
 
         [Display(Name = "Nom complet")]
         public string NomCompletUser

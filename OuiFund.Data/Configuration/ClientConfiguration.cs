@@ -13,9 +13,9 @@ namespace OuiFund.Data.Configuration
     {
         public ClientConfiguration()
         {
-            ToTable("Client");
-            HasKey(c => c.UtilisateurID);
-            Property(c => c.UtilisateurID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            //ToTable("Client");
+            //HasKey(c => c.UtilisateurID);
+            //Property(c => c.UtilisateurID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
     }
 }

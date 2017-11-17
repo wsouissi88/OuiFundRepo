@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IServices\IAdherentService.cs" />
+    <Compile Include="IServices\IAnalyseService.cs" />
     <Compile Include="IServices\ICategorieService.cs" />
     <Compile Include="IServices\IDossierService.cs" />
     <Compile Include="IServices\IEncryptionService.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="IServices\IStartupService.cs" />
     <Compile Include="IServices\IUserService.cs" />
     <Compile Include="Services\AdherentService.cs" />
+    <Compile Include="Services\AnalyseService.cs" />
     <Compile Include="Services\CategorieService.cs" />
     <Compile Include="Services\DossierService.cs" />
     <Compile Include="Services\EncryptionService.cs" />

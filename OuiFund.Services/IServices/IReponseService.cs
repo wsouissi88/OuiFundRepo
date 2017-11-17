@@ -10,6 +10,7 @@ namespace OuiFund.Services.IServices
     public interface IReponseService
     {
         bool ajouterReponse(Reponse reponse);
+        Reponse getReponseById(int reponseId);
         List<Reponse> getListReponses();
         List<Reponse> getReponsesQuestion(int questionId);
         void modifierReponse(Reponse reponse);

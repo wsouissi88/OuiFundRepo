@@ -13,10 +13,10 @@ namespace OuiFund.Data.Configuration
     {
         public AdherentConfiguration()
         {
-            ToTable("Adherent");
-            HasKey(c => c.UtilisateurID);
+            //ToTable("Adherent");
+            //HasKey(c => c.UtilisateurID);
 
-            Property(c => c.UtilisateurID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            //Property(c => c.UtilisateurID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
     }
 }

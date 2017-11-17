@@ -22,7 +22,7 @@ namespace OuiFund.Data
         public DbSet<Dossier> Dossiers { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<StartUp> StartUps { get; set; }
-
+        public DbSet<Analyse> Analyses { get; set; }
 
         public virtual void Commit()
         {
@@ -40,6 +40,8 @@ namespace OuiFund.Data
             modelBuilder.Configurations.Add(new StartupConfiguration());
             modelBuilder.Configurations.Add(new DossierConfiguration());
             modelBuilder.Configurations.Add(new DocumentConfiguration());
+
+            modelBuilder.Configurations.Add(new AnalyseConfiguration());
 
 
         }

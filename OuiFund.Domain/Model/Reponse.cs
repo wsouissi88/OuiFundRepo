@@ -9,6 +9,11 @@ namespace OuiFund.Domain.Model
 {
     public class Reponse
     {
+        public Reponse()
+        {
+            this.AnalysesR = new HashSet<Analyse>();                
+        }
+
         [Key]
         public int ReponseID { get; set; }
 
@@ -24,5 +29,7 @@ namespace OuiFund.Domain.Model
 
         public int questionId { get; set; }
         public virtual Question reponseQuestion { get; set; }
+
+        public virtual ICollection<Analyse> AnalysesR { get; set; }
     }
 }

@@ -69,11 +69,29 @@ $("#redactId").click(function (e) {
 $("#valid").click(function () {
     var list = new Array();
     if ($("#questionnaireId").hasClass('qcm')) {
+        list.push("qcm");
         $(".Question").each(function (index) {
             var idQuest = $(this).attr('id');
-            var idRepon = $("select[name='selectReponse" + idQuest + "']").find(":selected").val();
-            list.push(idQuest + ":" + idRepon);
+            var idRepon = $("select[name='selectReponse" + idQuest + "']").find(":selected").val();            
+            list.push(idRepon);
         });
+    }
+    if ($("#questionnaireId").hasClass('noted')) {
+        list.push("noted");
+        $(".Question").each(function (index) {
+            var idQuest= $(this).attr('id');
+            var note = $(this).find("input").val();
+            list.push(idQuest + ":" + note);
+        });
+    }
+    if ($("#questionnaireId").hasClass('redact')) {
+        list.push("redact");
+        $(".Question").each(function (index) {
+            var idQuest = $(this).attr('id');
+            var text = $(this).find("textarea").val();
+            list.push(idQuest + ":" + text);
+        });
+    }
         console.log(list);
         $.ajax({
             type: "GET",
@@ -84,31 +102,10 @@ $("#valid").click(function () {
             traditional: true,
             success: function (result) {
                 for (var j = 0; j < result.length; j++) {
-                    var x = result[j].split(":");
-                    console.log(x[0]);
+
+                    console.log(result[j]);
                 }
             }
         });
-    }
-    
-    //if ($("#questionnaireId").hasClass('qcm')){
-    //    $(".Question").each(function (index) {
-    //        var id = $(this).attr('id');
-    //        console.log(id);
-    //        console.log($("select[name='selectReponse" + id + "']").find(":selected").text());
-    //    });
-    //}
-    //if ($("#questionnaireId").hasClass('noted')) {
-    //    $(".Question").each(function (index) {
-    //        console.log($(this).attr('id'));
-    //        console.log($(this).find("input").val());
-    //    });
-    //}
-    //if ($("#questionnaireId").hasClass('redact')) {
-    //    $(".Question").each(function (index) {
-    //        console.log($(this).attr('id'));
-    //        console.log($(this).find("textarea").val());
-    //    });
-    //}
 });
 

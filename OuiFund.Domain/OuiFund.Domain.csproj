@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Adherent.cs" />
+    <Compile Include="Model\Analyse.cs" />
     <Compile Include="Model\CategorieQuest.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Document.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Model\Reponse.cs" />
     <Compile Include="Model\StartUp.cs" />
     <Compile Include="Repositories\IAdherentRepository.cs" />
+    <Compile Include="Repositories\IAnalyseRepository.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\ICategorieRepository.cs" />
     <Compile Include="Repositories\IClientRepository.cs" />

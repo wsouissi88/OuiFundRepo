@@ -89,6 +89,8 @@
     <Compile Include="Configuration\DocumentConfiguration.cs" />
     <Compile Include="Configuration\DossierConfiguration.cs" />
     <Compile Include="Configuration\QuestionConfiguration.cs" />
+    <Compile Include="Configuration\QuestionnaireConfiguration.cs" />
+    <Compile Include="Configuration\QuestionReponseConfiguration.cs" />
     <Compile Include="Configuration\ReponseConfiguration.cs" />
     <Compile Include="Configuration\StartupConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration.cs" />
@@ -112,6 +114,10 @@
     <Compile Include="Migrations\201711171741365_usersChanges.Designer.cs">
       <DependentUpon>201711171741365_usersChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712062304181_Questionnaire.cs" />
+    <Compile Include="Migrations\201712062304181_Questionnaire.Designer.cs">
+      <DependentUpon>201712062304181_Questionnaire.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OuiFundContext.cs" />
     <Compile Include="Repository\AdherentRepository.cs" />
@@ -120,6 +126,8 @@
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\DocumentRepository.cs" />
     <Compile Include="Repository\DossierRepository.cs" />
+    <Compile Include="Repository\QuestionnaireRepository.cs" />
+    <Compile Include="Repository\QuestionReponseRepository.cs" />
     <Compile Include="Repository\QuestionRepository.cs" />
     <Compile Include="Repository\ReponseRepository.cs" />
     <Compile Include="Repository\StartupRepository.cs" />
@@ -151,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711171741365_usersChanges.resx">
       <DependentUpon>201711171741365_usersChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712062304181_Questionnaire.resx">
+      <DependentUpon>201712062304181_Questionnaire.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

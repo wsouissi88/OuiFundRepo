@@ -1,6 +1,7 @@
 ﻿using OuiFund.Data;
 using OuiFund.Domain.Model;
 using OuiFund.Infrastructure.Mvc;
+using OuiFund.Infrastructure.Security;
 using OuiFund.Models;
 using OuiFund.Services.IServices;
 using System;
@@ -13,15 +14,17 @@ namespace OuiFund.Controllers
 {
     public class QuestionController : BaseController
     {
+        private IQuestionnaireService _questionnaireService;
         private IQuestionService questionService;
         private ICategorieService categorieService;
         private IReponseService reponseService;
         private IAnalyseService analyseService;
         private IUserService userService;
 
-        public QuestionController(IReponseService reponse, IQuestionService quest, ICategorieService categ, 
+        public QuestionController(IQuestionnaireService questionnaireService, IReponseService reponse, IQuestionService quest, ICategorieService categ, 
                                     IAnalyseService analyse, IUserService user)
         {
+            _questionnaireService = questionnaireService;
             reponseService = reponse;
             questionService = quest;
             categorieService = categ;
@@ -32,6 +35,8 @@ namespace OuiFund.Controllers
         // GET: Question
         public ActionResult Index()
         {
+            var categories = categorieService.getCategories();
+
             return View();
         }
 
@@ -73,7 +78,7 @@ namespace OuiFund.Controllers
         {
             List<string> quests = new List<string>();
             List<Reponse> rep = new List<Reponse>();
-            List<Question> questions = questionService.RandomQuestions(TypeQuestion.QCM_Question, 10);
+            List<Question> questions = questionService.RandomQuestions(TypeQuestion.DdlQuestion, 10);
             foreach (Question q in questions)
             {
                 rep = reponseService.getReponsesQuestion(q.QuestionID);
@@ -90,7 +95,7 @@ namespace OuiFund.Controllers
         {
             List<string> quests = new List<string>();
             List<Reponse> rep = new List<Reponse>();
-            List<Question> questions = questionService.RandomQuestions(TypeQuestion.Noted_Question, 10);
+            List<Question> questions = questionService.RandomQuestions(TypeQuestion.NoteQuestion, 10);
             foreach (Question q in questions)
             {                
                 quests.Add(q.QuestionID + ":" + q.DescriptionQuest);
@@ -101,7 +106,7 @@ namespace OuiFund.Controllers
         {
             List<string> quests = new List<string>();
             List<Reponse> rep = new List<Reponse>();
-            List<Question> questions = questionService.RandomQuestions(TypeQuestion.Libre_Question, 10);
+            List<Question> questions = questionService.RandomQuestions(TypeQuestion.TextAreaQUestion, 10);
             foreach (Question q in questions)
             {
                 quests.Add(q.QuestionID + ":" + q.DescriptionQuest);
@@ -168,12 +173,57 @@ namespace OuiFund.Controllers
             return Json(reponses, JsonRequestBehavior.AllowGet);
         }
 
-        [AllowAnonymous]
-        public ActionResult Questionnaire()
+        public ActionResult Questionnaire(int? id)
         {
-            return View();
+            // var userId = SecurityHelper.GetCurrentUserId();
+            var questionnaire = id.HasValue ? _questionnaireService.getQuestionnaireById(id.Value) : null;//_questionnaireService.getLastQuestionnaireByUserId(userId);
+            var categories = categorieService.getCategories();
+            var model = new QuestionnaireVm(categories, questionnaire);
+            model.QuestionnaireId = id ?? 0;
+            return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Questionnaire(QuestionnaireVm model)
+        {
+            Questionnaire questionnaire;
+            var questions = new List<QuestionReponse>();
+            foreach (var cat in model.CategorieQuestions)
+            {
+                foreach (var q in cat.Questions)
+                {
+                    var questionReponse = new QuestionReponse
+                    {
+                        QuestionID = q.Question.QuestionID,
+                        ReponseSelected = q.ReponseSelected,
+                        ReponseString = q.ReponseString
+                    };
+
+                    questions.Add(questionReponse);
+                }
+            }
+            if (model.QuestionnaireId == 0)
+            {
+                 questionnaire = new Questionnaire();
+                
+                questionnaire.Questions = questions;
+                questionnaire.UserId = SecurityHelper.GetCurrentUserId();
+                questionnaire.DateCreation = DateTime.Now;
+                _questionnaireService.Create(questionnaire);
+            }
+            else
+            {
+                 questionnaire = _questionnaireService.getQuestionnaireById(model.QuestionnaireId);
+                _questionnaireService.DeleteQuestionReponseByQuestionnaireId(model.QuestionnaireId);
+                questionnaire.Questions = questions;
+                questionnaire.UserId = SecurityHelper.GetCurrentUserId();
+                _questionnaireService.Update(questionnaire);
+            }
+            var categories = categorieService.getCategories();
+             model = new QuestionnaireVm(categories, questionnaire);
+            return View(model);
+        }
         public ActionResult Reponses()
         {
             var reponses = reponseService.getListReponses();
@@ -248,7 +298,7 @@ namespace OuiFund.Controllers
                 };
                 switch (model.TypeQuest)
                 {
-                    case TypeQuestion.QCM_Question:
+                    case TypeQuestion.DdlQuestion:
                         List<string> listReponses = model.reponse.Split(',').ToList<string>();
                         for (int i = 0; i < listReponses.Count; i++)
                         {
@@ -262,10 +312,10 @@ namespace OuiFund.Controllers
                             q.Reponses.Add(r);
                         }
                         break;
-                    case TypeQuestion.Noted_Question:
+                    case TypeQuestion.NoteQuestion:
 
                         break;
-                    case TypeQuestion.Libre_Question:
+                    case TypeQuestion.TextAreaQUestion:
 
                         break;
                 }

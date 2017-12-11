@@ -58,6 +58,10 @@ namespace OuiFund.App_Start
             container.Register<IReponseRepository, ReponseRepository>(Lifestyle.Scoped);
             container.Register<IReponseService, ReponseService>(Lifestyle.Scoped);
 
+            container.Register<IQuestionReponseRepository, QuestionReponseRepository>(Lifestyle.Scoped);
+            container.Register<IQuestionnaireReposittory, QuestionnaireRepository>(Lifestyle.Scoped);
+            container.Register<IQuestionnaireService, QuestionnaireService>(Lifestyle.Scoped);
+            
             container.Register<IEncryptionService, EncryptionService>(Lifestyle.Scoped);
 
         }

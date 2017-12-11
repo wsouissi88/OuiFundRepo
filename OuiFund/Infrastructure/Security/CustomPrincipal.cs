@@ -7,12 +7,22 @@ namespace OuiFund.Infrastructure.Security
     public class CustomPrincipal : IPrincipal
     {
         private readonly FormsIdentity _identity;
+        private int _userId;
         private int _roleId;
         private string[] _userData;
 
         public CustomPrincipal(FormsIdentity identity)
         {
             _identity = identity;
+        }
+
+        public int UserId
+        {
+            get
+            {
+                InitUserData();
+                return _userId;
+            }
         }
 
         public int RoleId
@@ -29,6 +39,7 @@ namespace OuiFund.Infrastructure.Security
             if (_userData != null) return;
             _userData = _identity.Ticket.UserData.Split(',');
             _roleId = Convert.ToInt32(_userData[0]);
+            _userId = Convert.ToInt32(_userData[1]);
 
         }
 

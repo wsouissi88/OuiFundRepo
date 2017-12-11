@@ -43,11 +43,10 @@ namespace OuiFund.Domain.Model
 
     public enum TypeQuestion
     {
-        [Display(Name = "Question Choix Multiple")]
-        QCM_Question=1,
-        [Display(Name = "Question Evaluation")]
-        Noted_Question=2,
-        [Display(Name = "Rédaction")]
-        Libre_Question=3
+        TextBoxQuestion=1,
+        RadioQuestion=2,
+        DdlQuestion=3,
+        NoteQuestion = 4,
+        TextAreaQUestion = 5
     }
 }

@@ -13,6 +13,14 @@ namespace OuiFund.Infrastructure.Security
             return currentUserRoleId == 1;
         }
 
+        public static int GetCurrentUserId()
+        {
+            if (HttpContext.Current == null) return 0;
+            var identity = HttpContext.Current.User as CustomPrincipal;
+
+            return identity == null ? 0 : identity.UserId;
+        }
+
         public static int GetCurrentUserRoleId()
         {
             if (HttpContext.Current == null) return 0;
@@ -20,5 +28,7 @@ namespace OuiFund.Infrastructure.Security
 
             return identity == null ? 0 : identity.RoleId;
         }
+
+        
     }
 }

@@ -49,5 +49,10 @@ namespace OuiFund.Services.Services
         {
             _questionReponseReposittory.DeleteQuestionReponseByQuestionnaireId(questionnaireId);
         }
+
+        public List<Questionnaire> getAll()
+        {
+            return _questionnaireReposittory.GetAll().ToList();
+        }
     }
 }

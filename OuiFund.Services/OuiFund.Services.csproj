@@ -40,11 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IServices\IEmailService.cs" />
     <Compile Include="IServices\IAdherentService.cs" />
     <Compile Include="IServices\IAnalyseService.cs" />
     <Compile Include="IServices\ICategorieService.cs" />
     <Compile Include="IServices\IDossierService.cs" />
     <Compile Include="IServices\IEncryptionService.cs" />
+    <Compile Include="IServices\IPdfService.cs" />
     <Compile Include="IServices\IQuestionnaireService.cs" />
     <Compile Include="IServices\IQuestionService.cs" />
     <Compile Include="IServices\IReponseService.cs" />
@@ -54,7 +56,9 @@
     <Compile Include="Services\AnalyseService.cs" />
     <Compile Include="Services\CategorieService.cs" />
     <Compile Include="Services\DossierService.cs" />
+    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\EncryptionService.cs" />
+    <Compile Include="Services\PdfService.cs" />
     <Compile Include="Services\QuestionnaireService.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="Services\ReponseService.cs" />

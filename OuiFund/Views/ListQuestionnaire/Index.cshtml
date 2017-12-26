@@ -1,0 +1,29 @@
+﻿@model OuiFund.Models.ListQuestionnairesVm
+
+@{
+    ViewBag.Title = "Questionnaire";
+}
+
+<table>
+    @for (var i = 0; i < Model.Questionnaires.Count(); i++)
+    {
+        <tr>
+            <td>
+                @Html.EditorFor(m => m.Questionnaires[i].DateCreation, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </td>
+            <td>
+                @Html.EditorFor(m => m.Questionnaires[i].User.AdresseEmail, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Questionnairetype.ToString())*@
+            </td>
+            <td>
+                @Html.ActionLink("Apercu", "Index", "Questionnaire", new { id = Model.Questionnaires[i].QuestionnaireID }, new { @class = "form-control" })
+            </td>
+            <td>
+                @Html.ActionLink("Analyse", "AnalysePdf", "ListQuestionnaire", new { id = Model.Questionnaires[i].QuestionnaireID }, new { @class = "form-control" })
+            </td>
+
+        </tr>
+    }
+</table>

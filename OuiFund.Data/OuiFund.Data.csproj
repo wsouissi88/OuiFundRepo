@@ -118,6 +118,18 @@
     <Compile Include="Migrations\201712062304181_Questionnaire.Designer.cs">
       <DependentUpon>201712062304181_Questionnaire.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712121030334_QuestionnaireType.cs" />
+    <Compile Include="Migrations\201712121030334_QuestionnaireType.Designer.cs">
+      <DependentUpon>201712121030334_QuestionnaireType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712201200595_reponse.cs" />
+    <Compile Include="Migrations\201712201200595_reponse.Designer.cs">
+      <DependentUpon>201712201200595_reponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712201251352_AnalyseFirstSurvey.cs" />
+    <Compile Include="Migrations\201712201251352_AnalyseFirstSurvey.Designer.cs">
+      <DependentUpon>201712201251352_AnalyseFirstSurvey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OuiFundContext.cs" />
     <Compile Include="Repository\AdherentRepository.cs" />
@@ -162,6 +174,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712062304181_Questionnaire.resx">
       <DependentUpon>201712062304181_Questionnaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712121030334_QuestionnaireType.resx">
+      <DependentUpon>201712121030334_QuestionnaireType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712201200595_reponse.resx">
+      <DependentUpon>201712201200595_reponse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712201251352_AnalyseFirstSurvey.resx">
+      <DependentUpon>201712201251352_AnalyseFirstSurvey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

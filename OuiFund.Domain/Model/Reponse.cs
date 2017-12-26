@@ -25,8 +25,9 @@ namespace OuiFund.Domain.Model
         public int ValeurReponse { get; set; }
 
         [Display(Name = "Analyse réponse")]
-        public string AnalyseReponse { get; set; }
-
+        public string AnalyseReponsePointsForts { get; set; }
+        public string AnalyseReponsePointsFaibles { get; set; }
+        public string AnalyseReponsePointsaAmeliorer{ get; set; }
         public int questionId { get; set; }
         public virtual Question reponseQuestion { get; set; }
 

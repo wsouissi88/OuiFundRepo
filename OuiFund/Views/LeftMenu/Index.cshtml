@@ -4,5 +4,11 @@
 }
 
 <div>
-
+    <nav class="navbar navbar-default navbar-left ">
+        <ul class="nav navbar-nav navbar-left" style="width: 100%;">
+            <li>@Html.ActionLink("Administration", "Admin", "Dashboard", null, new { @style = "font-weight: bold;font-size:17px;" })</li>
+            <li>@Html.ActionLink("Questionnaire", "Index", "Questionnaire", null, new { @style = "font-weight: bold;font-size:17px;" })</li>
+            <li>@Html.ActionLink("Questionnaires", "Index", "ListQuestionnaire", null, new { @style = "font-weight: bold;font-size:17px;" })</li>
+        </ul>
+    </nav>
 </div>

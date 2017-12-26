@@ -20,9 +20,10 @@ namespace OuiFund.Controllers
         private IReponseService reponseService;
         private IAnalyseService analyseService;
         private IUserService userService;
+        private IEmailService _emailService;
 
         public QuestionController(IQuestionnaireService questionnaireService, IReponseService reponse, IQuestionService quest, ICategorieService categ, 
-                                    IAnalyseService analyse, IUserService user)
+                                    IAnalyseService analyse, IUserService user, IEmailService emailService)
         {
             _questionnaireService = questionnaireService;
             reponseService = reponse;
@@ -30,6 +31,7 @@ namespace OuiFund.Controllers
             categorieService = categ;
             analyseService = analyse;
             userService = user;
+            _emailService = emailService;
         }
 
         // GET: Question
@@ -173,57 +175,7 @@ namespace OuiFund.Controllers
             return Json(reponses, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Questionnaire(int? id)
-        {
-            // var userId = SecurityHelper.GetCurrentUserId();
-            var questionnaire = id.HasValue ? _questionnaireService.getQuestionnaireById(id.Value) : null;//_questionnaireService.getLastQuestionnaireByUserId(userId);
-            var categories = categorieService.getCategories();
-            var model = new QuestionnaireVm(categories, questionnaire);
-            model.QuestionnaireId = id ?? 0;
-            return View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Questionnaire(QuestionnaireVm model)
-        {
-            Questionnaire questionnaire;
-            var questions = new List<QuestionReponse>();
-            foreach (var cat in model.CategorieQuestions)
-            {
-                foreach (var q in cat.Questions)
-                {
-                    var questionReponse = new QuestionReponse
-                    {
-                        QuestionID = q.Question.QuestionID,
-                        ReponseSelected = q.ReponseSelected,
-                        ReponseString = q.ReponseString
-                    };
-
-                    questions.Add(questionReponse);
-                }
-            }
-            if (model.QuestionnaireId == 0)
-            {
-                 questionnaire = new Questionnaire();
-                
-                questionnaire.Questions = questions;
-                questionnaire.UserId = SecurityHelper.GetCurrentUserId();
-                questionnaire.DateCreation = DateTime.Now;
-                _questionnaireService.Create(questionnaire);
-            }
-            else
-            {
-                 questionnaire = _questionnaireService.getQuestionnaireById(model.QuestionnaireId);
-                _questionnaireService.DeleteQuestionReponseByQuestionnaireId(model.QuestionnaireId);
-                questionnaire.Questions = questions;
-                questionnaire.UserId = SecurityHelper.GetCurrentUserId();
-                _questionnaireService.Update(questionnaire);
-            }
-            var categories = categorieService.getCategories();
-             model = new QuestionnaireVm(categories, questionnaire);
-            return View(model);
-        }
+        
         public ActionResult Reponses()
         {
             var reponses = reponseService.getListReponses();
@@ -306,7 +258,7 @@ namespace OuiFund.Controllers
                             Reponse r = new Reponse
                             {
                                 TextReponse = reponseAnalyses[0],
-                                AnalyseReponse = reponseAnalyses[1],
+                                AnalyseReponsePointsForts = reponseAnalyses[1],
                                 ValeurReponse = i
                             };
                             q.Reponses.Add(r);

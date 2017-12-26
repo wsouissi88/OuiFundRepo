@@ -223,14 +223,19 @@
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnalyseController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DossierController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeftMenuController.cs" />
+    <Compile Include="Controllers\ListQuestionnaireController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\PdfResult.cs" />
     <Compile Include="Infrastructure\Mvc\BaseController.cs" />
     <Compile Include="Infrastructure\Mvc\HtmlHelperExtensions.cs" />
     <Compile Include="Infrastructure\Security\CustomPrincipal.cs" />
@@ -238,6 +243,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ListQuestionnairesVm.cs" />
     <Compile Include="Models\QuestionnaireVm.cs" />
     <Compile Include="Models\QuestionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -552,9 +558,13 @@
     <Content Include="Views\Error\Permission.cshtml" />
     <Content Include="Views\Home\Adherents.cshtml" />
     <Content Include="Views\LeftMenu\Index.cshtml" />
+    <Content Include="Views\ListQuestionnaire\Index.cshtml" />
+    <Content Include="Views\Dashboard\Admin.cshtml" />
+    <Content Include="Views\Questionnaire\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Analyse\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Dossier\" />
   </ItemGroup>

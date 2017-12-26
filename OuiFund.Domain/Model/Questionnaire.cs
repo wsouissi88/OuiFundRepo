@@ -22,5 +22,16 @@ namespace OuiFund.Domain.Model
         [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User User { get; set; }
+        public QuestionnaireType Questionnairetype { get; set; }
+        public string AnalysePointForts { get; set; }
+        public string AnalysePointFaibles { get; set; }
+        public string AnalysePointaAmrliorer { get; set; }
+
+    }
+
+    public enum QuestionnaireType
+    {
+        FirstQuestionnaire = 1,
+        SecondQuestionnaire  = 2
     }
 }

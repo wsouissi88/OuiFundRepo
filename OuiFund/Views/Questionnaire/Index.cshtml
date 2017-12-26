@@ -1,0 +1,135 @@
+﻿@model OuiFund.Models.QuestionnaireVm
+
+
+@{
+    ViewBag.Title = "Questionnaire";
+}
+
+
+<br />
+
+@using (Html.BeginForm("Index", "Questionnaire", null, FormMethod.Post, new { @id = "myForm", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <ul class="nav nav-tabs">
+
+        @for (var i = 0; i < Model.CategorieQuestions.Count(); i++)
+        {
+            if (i == 0)
+            {
+                <li class="active">
+                    <a id="a_@i" href="#cat_@i" data-toggle="tab">@Model.CategorieQuestions[i].CategorieQuest.NomCategorie</a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a id="a_@i" href="#cat_@i" data-toggle="tab">@Model.CategorieQuestions[i].CategorieQuest.NomCategorie</a>
+                </li>
+            }
+
+        }
+
+
+    </ul>
+    <div class="tab-content">
+        @Html.HiddenFor(m => m.QuestionnaireId)
+        @for (var i = 0; i < Model.CategorieQuestions.Count(); i++)
+        {
+            var strClass = i == 0 ? "active" : "fade";
+
+            <div class="tab-pane @strClass" id="cat_@i">
+                <br />
+
+                @for (var j = 0; j < Model.CategorieQuestions[i].Questions.Count(); j++)
+                {
+                    @Html.HiddenFor(m => m.CategorieQuestions[i].Questions[j].Question.QuestionID)
+                    @Html.HiddenFor(m => m.CategorieQuestions[i].Questions[j].Question.TypeQuest)
+                    <fieldset>
+                        <legend style="">@Model.CategorieQuestions[i].Questions[j].Question.DescriptionQuest</legend>
+                        @{ switch (Model.CategorieQuestions[i].Questions[j].Question.TypeQuest)
+                            {
+                                case OuiFund.Domain.Model.TypeQuestion.TextBoxQuestion:
+                                    @Html.TextBoxFor(m => m.CategorieQuestions[i].Questions[j].ReponseString, new { @class = "form-control", required = "required" })
+                                    break;
+                                case OuiFund.Domain.Model.TypeQuestion.RadioQuestion:
+                                    <table>
+                                        <tr>
+                                            @foreach (var answer in Model.CategorieQuestions[i].Questions[j].Question.Reponses)
+                                            {
+                                                <td>
+                                                    @Html.RadioButtonFor(m => m.CategorieQuestions[i].Questions[j].ReponseSelected, answer.ReponseID, new { id = answer.ReponseID })
+                                                    @answer.TextReponse
+                                                    &nbsp;
+                                                </td>
+                                            }
+                                        </tr>
+                                    </table>
+                                    break;
+                                case OuiFund.Domain.Model.TypeQuestion.DdlQuestion:
+                                    @Html.DropDownListFor(m => m.CategorieQuestions[i].Questions[j].ReponseSelected, Model.CategorieQuestions[i].Questions[j].Question.Reponses.Select(item => new SelectListItem
+                               {
+                                   Value = item.ReponseID.ToString(),
+                                   Text = item.TextReponse.ToString()
+                               }), new { @class = "form-control" })
+                                    break;
+                                case OuiFund.Domain.Model.TypeQuestion.NoteQuestion:
+                                    <table>
+                                        <tr>
+                                            @for (var k = 1; k < 11; k++)
+                                            {
+                                                <td>
+                                                    @Html.RadioButtonFor(m => m.CategorieQuestions[i].Questions[j].ReponseSelected, k, new { id = k })
+                                                    @k &nbsp;
+                                                </td>
+                                            }
+
+                                        </tr>
+                                    </table>
+                                    break;
+                                case OuiFund.Domain.Model.TypeQuestion.TextAreaQUestion:
+                                    @Html.TextAreaFor(m => m.CategorieQuestions[i].Questions[j].ReponseString, new { @class = "form-control" })
+                                    break;
+                            }
+                        }
+                    </fieldset>
+
+
+                    <br />
+                            }
+                @if (i == Model.CategorieQuestions.Count() - 1)
+                {
+                    <button class="btn btn-success btn-block" type="submit" id="btnEnregistrer">
+                        Valider
+                    </button>
+                }
+                else
+                {
+                    <a id="btnContinue@(i + 1)" class="btn btn-primary btn-block btnContinue"> Continuer</a>
+                }
+
+            </div>
+
+                            }
+
+    </div>
+                            }
+
+
+@section scripts {
+
+    <script>
+
+        $(function () {
+
+            //"#cat_ "
+            $(".btnContinue").click(function () {
+                var i = this.id.substring(11, this.id.length);
+                $("#a_"+i).click();
+            });
+
+        });
+
+    </script>
+
+}

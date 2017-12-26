@@ -10,6 +10,7 @@ namespace OuiFund.Services.IServices
 {
     public interface IQuestionnaireService
     {
+        List<Questionnaire> getAll();
         Questionnaire getQuestionnaireById(int questionnaireId);
         List<Questionnaire> getQuestionnaireByUserId(int userId);
         Questionnaire getLastQuestionnaireByUserId(int userId);
